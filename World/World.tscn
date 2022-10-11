@@ -1,12 +1,47 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Background.png" type="Texture" id=2]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World/World.gd" type="Script" id=4]
 [ext_resource path="res://Entities/Enemy/EnemyGroup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Pixel.png" type="Texture" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 direction = vec2(1.0,0.0);
+uniform float speed_scale = 0.05;
+
+void fragment(){
+
+     vec2 move = direction * TIME * speed_scale;
+
+     COLOR = texture(TEXTURE, UV + move);   
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/direction = Vector2( 0, -1 )
+shader_param/speed_scale = 0.5
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
+
+[node name="ScrollingBackground" type="Sprite" parent="."]
+visible = false
+material = SubResource( 2 )
+position = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 320, 180 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 160, 90 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 320, 180 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 160, 132 )
@@ -17,3 +52,13 @@ maxSpeed = 500
 [node name="UI" parent="." instance=ExtResource( 3 )]
 
 [node name="EnemyGroup" parent="." instance=ExtResource( 5 )]
+
+[node name="WorldCamera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 320
+limit_bottom = 180
+editor_draw_limits = true
