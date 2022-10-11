@@ -17,3 +17,23 @@ margin_right = 115.0
 margin_bottom = 41.0
 theme = ExtResource( 2 )
 text = "Score: 999999"
+
+[node name="GameOver" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+text = "YOU DIED!
+
+
+PRESS ANY KEY TO CONTINUE"
+align = 1
+valign = 1

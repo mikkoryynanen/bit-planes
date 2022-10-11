@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Background.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Pixel.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/World/World.gd" type="Script" id=4]
-[ext_resource path="res://Entities/Enemy/EnemyGroup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Shader" id=1]
@@ -50,8 +49,6 @@ deacceleration = 500
 maxSpeed = 500
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
-
-[node name="EnemyGroup" parent="." instance=ExtResource( 5 )]
 
 [node name="WorldCamera" type="Camera2D" parent="."]
 anchor_mode = 0
