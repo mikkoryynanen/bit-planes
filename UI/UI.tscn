@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=2]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -14,4 +15,5 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 115.0
 margin_bottom = 41.0
+theme = ExtResource( 2 )
 text = "Score: 999999"
