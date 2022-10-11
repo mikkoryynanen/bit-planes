@@ -1,15 +1,12 @@
-extends KinematicBody2D
+extends Moveable
 
-export var acceleration = 500
-export var deacceleration = 500
-export var maxSpeed = 500
 export var shootInterval = 0.75
 
-var velocity: Vector2
 var screenSize
 var shootTimer: float
 
 const Projectile = preload("res://Entities/Projectile/Projectile.tscn")
+
 
 func _ready():
 	screenSize = get_viewport_rect().size
@@ -34,11 +31,8 @@ func _physics_process(delta):
 	inputVector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	inputVector.normalized()
 
-	if inputVector != Vector2.ZERO:
-		velocity = velocity.move_toward(inputVector * maxSpeed, acceleration * delta)
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO, deacceleration * delta)	
+	set_movement(inputVector, delta)
 		
 	position.x = clamp(position.x, 8, screenSize.x - 8)
 	position.y = clamp(position.y, 8, screenSize.y  - 8)
-	velocity = move_and_slide(velocity)
+	
