@@ -9,6 +9,7 @@ extents = Vector2( 8, 8 )
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 2 )
+maxSpeed = 25
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
