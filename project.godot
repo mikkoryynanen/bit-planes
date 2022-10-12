@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/Enemy/EnemyGroup.gd"
 }, {
+"base": "Reference",
+"class": "FileManager",
+"language": "GDScript",
+"path": "res://Utils/FileManager.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Moveable",
 "language": "GDScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Collectable": "",
 "Enemy": "",
 "EnemyGroup": "",
+"FileManager": "",
 "Moveable": ""
 }
 

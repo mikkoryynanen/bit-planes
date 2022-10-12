@@ -41,6 +41,8 @@ func on_collected():
    collectables += 10
    set_score(1)
 
+   FileManager.save_collectables(collectables)
+
 func set_score(value):
    score += value
 

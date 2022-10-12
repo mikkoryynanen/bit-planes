@@ -14,6 +14,7 @@ enum {
 var state = RUNNING
 
 func _ready():
+
 	screenSize = get_viewport_rect().size
 
 	Events.connect("on_level_completed", self, "level_completed")
