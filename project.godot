@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "Collectable",
+"language": "GDScript",
+"path": "res://Entities/Collectable/Collectable.gd"
+}, {
 "base": "Moveable",
 "class": "Enemy",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Entities/Moveable.gd"
 } ]
 _global_script_class_icons={
+"Collectable": "",
 "Enemy": "",
 "EnemyGroup": "",
 "Moveable": ""
@@ -120,6 +126,7 @@ shoot={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Projectile"
+2d_physics/layer_4="Collectable"
 
 [mono]
 

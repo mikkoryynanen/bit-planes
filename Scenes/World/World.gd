@@ -1,6 +1,7 @@
 extends Node2D
 
 var score = 0
+var collectables = 0
 var spawnedEnemiesCount: int = 0
 
 enum {
@@ -12,6 +13,7 @@ var state = RUNNING
 func _ready():
    Events.connect("on_scored", self, "set_score")
    Events.connect("on_enemy_destroyed", self, "check_for_enemies")
+   Events.connect("on_collected", self, "on_collected")
 
    spawn_enemy_groups()	   
 
@@ -34,6 +36,10 @@ func check_for_enemies():
 	   Events.emit_signal("on_level_completed")
 	  
    # TODO Take into account missed enemies
+
+func on_collected():
+   collectables += 10
+   set_score(1)
 
 func set_score(value):
    score += value
