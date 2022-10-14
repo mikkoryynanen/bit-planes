@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Utils/FileManager.gd"
 }, {
+"base": "Reference",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://Models/ItemData.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Moveable",
 "language": "GDScript",
@@ -39,6 +44,7 @@ _global_script_class_icons={
 "Enemy": "",
 "EnemyGroup": "",
 "FileManager": "",
+"ItemData": "",
 "Moveable": ""
 }
 
@@ -50,6 +56,7 @@ run/main_scene="res://Scenes/MainMenu/MainMenu.tscn"
 [autoload]
 
 Events="*res://Events.tscn"
+GameData="*res://Entities/GameData.gd"
 
 [debug]
 

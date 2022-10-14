@@ -58,12 +58,12 @@ margin_bottom = 41.0
 theme = SubResource( 3 )
 text = "Play"
 
-[node name="Upgrades" type="Button" parent="MarginContainer/ButtonContainer"]
+[node name="Build" type="Button" parent="MarginContainer/ButtonContainer"]
 margin_top = 45.0
 margin_right = 130.0
 margin_bottom = 65.0
 theme = SubResource( 3 )
-text = "Upgrades"
+text = "Build"
 
 [node name="Settings" type="Button" parent="MarginContainer/ButtonContainer"]
 margin_top = 69.0
@@ -73,3 +73,4 @@ theme = SubResource( 3 )
 text = "Settings"
 
 [connection signal="button_down" from="MarginContainer/ButtonContainer/Play" to="." method="_on_Play_button_down"]
+[connection signal="button_down" from="MarginContainer/ButtonContainer/Build" to="." method="_on_Build_button_down"]
