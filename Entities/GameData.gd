@@ -1,6 +1,8 @@
 extends Node2D
 
 const FILE_NAME = "res://game_data.json"
+const FILE_PASS = "1234"
+
 var game_data = {
 	"collectables": 0,
 	"attached_items": [],
@@ -31,12 +33,16 @@ var game_data = {
 			"slot": "weapon"
 		},
 	]
-} setget , game_data_get
+}
 
 
-func game_data_get():
-	load_file()	
-	return game_data
+func _ready():
+	game_data = load_file()	
+
+# Helpers =========================================================
+func add_collected_items(added_collectables_count):
+	game_data.collectables += added_collectables_count
+	save_file()
 
 func attach_item(item_data, slot_id: int):
 	game_data.attached_items.append(item_data)
@@ -65,13 +71,20 @@ func can_attach_item(slot_id: int) -> bool:
 			return false
 
 	return true
+# ========================================================================
 
 func load_file():
 	var file = File.new()
 	if file.file_exists(FILE_NAME):
-		file.open(FILE_NAME, File.READ)
+		if OS.is_debug_build():
+			file.open(FILE_NAME, File.READ)
+		else:
+			file.open_encrypted_with_pass(FILE_NAME, File.READ, FILE_PASS)
+		
 		var data = parse_json(file.get_as_text())
+
 		file.close()
+
 		if typeof(data) == TYPE_DICTIONARY:
 			game_data = data
 		else:
@@ -84,7 +97,11 @@ func load_file():
 
 func save_file():
 	var file = File.new()
-	file.open(FILE_NAME, File.WRITE)
+	if OS.is_debug_build():
+		file.open(FILE_NAME, File.WRITE)
+	else:
+		file.open_encrypted_with_pass(FILE_NAME, File.WRITE, FILE_PASS)
+
 	file.store_string(to_json(game_data))
 	file.close()
 	print("[GameData] game_data saved")

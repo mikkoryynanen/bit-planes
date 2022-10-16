@@ -25,11 +25,6 @@ _global_script_classes=[ {
 "path": "res://Entities/Enemy/EnemyGroup.gd"
 }, {
 "base": "Reference",
-"class": "FileManager",
-"language": "GDScript",
-"path": "res://Utils/FileManager.gd"
-}, {
-"base": "Reference",
 "class": "ItemData",
 "language": "GDScript",
 "path": "res://Models/ItemData.gd"
@@ -43,7 +38,6 @@ _global_script_class_icons={
 "Collectable": "",
 "Enemy": "",
 "EnemyGroup": "",
-"FileManager": "",
 "ItemData": "",
 "Moveable": ""
 }
