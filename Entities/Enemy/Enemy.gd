@@ -29,7 +29,7 @@ func _on_Hitbox_area_entered(area: Area2D):
 		for i in collectablesCount:
 			var collectable = Collectable.instance()
 			get_parent().call_deferred("add_child", collectable)
-			collectable.global_position = self.global_position * Vector2.ONE * randf()
+			collectable.global_position = self.global_position + Vector2.ONE * randf() * 15
 
 			# TODO REMOVE
 			collectable.scale = Vector2.ONE * 0.5
