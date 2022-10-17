@@ -2,8 +2,8 @@ extends Control
 
 
 func _on_Play_button_down():
-	get_tree().change_scene("res://Scenes/World/World.tscn")
+	SceneLoader.load_core()
 
 
 func _on_Build_button_down():
-	get_tree().change_scene("res://Scenes/Build/Build.tscn")
+	SceneLoader.load_menu_build()

@@ -4,46 +4,60 @@ var score = 0
 var collectables = 0
 var spawnedEnemiesCount: int = 0
 
-enum {
-   RUNNING,
-   COMPLETED
-}
+enum { RUNNING, COMPLETED }
 var state = RUNNING
+var elapsed_time = 0
+var enemy_groups = []
+var current_group = 0
+
+onready var EnemyGroupScene = preload("res://Entities/Enemy/EnemyGroup.tscn")
+
 
 func _ready():
-   Events.connect("on_scored", self, "set_score")
-   Events.connect("on_enemy_destroyed", self, "check_for_enemies")
-   Events.connect("on_collected", self, "on_collected")
+	Events.connect("on_scored", self, "set_score")
+	Events.connect("on_enemy_destroyed", self, "check_for_enemies")
+	Events.connect("on_collected", self, "on_collected")
 
-   spawn_enemy_groups()	   
+	enemy_groups = EnemyGroups.load_level_enemies(0).groups
+
+
+func _process(delta):
+	elapsed_time += delta
+	if enemy_groups.size() > 0 and current_group < enemy_groups.size():
+		if elapsed_time >= enemy_groups[current_group].spawn_time:
+			spawn_enemy_groups()
+			current_group += 1
+
+	if current_group >= enemy_groups.size() and spawnedEnemiesCount <= 0:
+		# Wait X amount of time, until all remaining enemies have dissapeared
+		# TODO Take us back to main menu
+		Events.emit_signal("on_level_completed")
+
 
 func spawn_enemy_groups():
-   # TODO logic to spawn enemy waves when certain time has passed
-   # since we are not moving the camera this is the only viable option
-   
-   var EnemyGroupScene = load("res://Entities/Enemy/EnemyGroup.tscn")
-   var enemyGroup = EnemyGroupScene.instance()
-   self.add_child(enemyGroup)
-   
-   spawnedEnemiesCount += enemyGroup.count
+	# TODO logic to spawn enemy waves when certain time has passed
+	# since we are not moving the camera this is the only viable option
+
+	var enemyGroup = EnemyGroupScene.instance()
+	self.add_child(enemyGroup)
+
+	spawnedEnemiesCount += enemyGroup.count
+
 
 func check_for_enemies():
-   spawnedEnemiesCount -= 1
-   
-   # Check for game over state
-   if spawnedEnemiesCount <= 0:
-	   get_tree().change_scene("res://Scenes/MainMenu/MainMenu.tscn")
-	   Events.emit_signal("on_level_completed")
-	  
-   # TODO Take into account missed enemies
+	# NOTE This is also called from oustide view destroy
+	# Make sure no score is given here, just for tracking
+	spawnedEnemiesCount -= 1
+
 
 func on_collected():
-   collectables += 10
-   set_score(1)
+	collectables += 10
+	set_score(1)
 
-   GameData.add_collected_items(10)
+	GameData.add_collected_items(10)
+
 
 func set_score(value):
-   score += value
+	score += value
 
-   Events.emit_signal("update_score_ui", score)
+	Events.emit_signal("update_score_ui", score)

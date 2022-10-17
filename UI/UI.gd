@@ -17,3 +17,6 @@ func update_score(value):
 
 func level_completed():
 	gameOver.visible = true
+
+func _on_Continue_button_down():
+	SceneLoader.load_menu_main()

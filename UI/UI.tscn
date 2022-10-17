@@ -21,6 +21,7 @@ text = "Score: 999999"
 [node name="GameOver" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="GameOver"]
 anchor_right = 1.0
@@ -31,9 +32,22 @@ margin_right = -15.0
 margin_bottom = -15.0
 size_flags_horizontal = 3
 theme = ExtResource( 2 )
-text = "YOU DIED!
+text = "LEVEL COMPLETED!
 
 
 PRESS ANY KEY TO CONTINUE"
 align = 1
 valign = 1
+
+[node name="Continue" type="Button" parent="GameOver"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -38.0
+margin_top = -40.0
+margin_right = 38.0
+margin_bottom = -20.0
+text = "Continue"
+
+[connection signal="button_down" from="GameOver/Continue" to="." method="_on_Continue_button_down"]

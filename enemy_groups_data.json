@@ -1,0 +1,28 @@
+{
+  "levels": [
+    {
+      "groups": [
+        {
+          "enemies_count": 3,
+          "spawn_time": 0,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+        },
+        {
+          "enemies_count": 3,
+          "spawn_time": 1,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+        },
+        {
+          "enemies_count": 3,
+          "spawn_time": 5,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+        },
+        {
+          "enemies_count": 3,
+          "spawn_time": 8,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+        }
+      ]
+    }
+  ]
+}
