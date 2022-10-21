@@ -4,7 +4,7 @@ onready var Slot = preload("res://UI/Slot.tscn")
 onready var slots_parent = $Control/VBoxContainer/Top/ListOfSlots/SlotsParent
 onready var items_parent = $Control/VBoxContainer/Bottom/ItemsParent
 onready var information_panel = $Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel
-onready var collectables_label: Label = $Control/VBoxContainer/Top/Container/CollectablesCount
+onready var collectables_label: Label = $Control/VBoxContainer/Header/CollectablesCount
 
 var built_slots = []
 var built_items = []
@@ -136,3 +136,7 @@ func filter_slot_items(array: Array, slot):
 			arr.append(item)
 
 	return arr
+
+
+func _on_Back_button_down():
+	SceneLoader.load_menu_main()
