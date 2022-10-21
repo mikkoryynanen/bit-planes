@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/Slot.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Collectable.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Untitled.png" type="Texture" id=3]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=4]
 [ext_resource path="res://Resources/Fonts/PublicPixel-z84yD.ttf" type="DynamicFontData" id=5]
@@ -23,14 +24,13 @@ shortcut_in_tooltip = false
 texture_normal = ExtResource( 3 )
 script = ExtResource( 1 )
 
-[node name="SelectionOutline" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 6 )
+[node name="AttachedIcon" type="TextureRect" parent="."]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 2 )
+stretch_mode = 6
 
-[node name="EquippedOutline" type="TextureRect" parent="."]
-visible = false
-self_modulate = Color( 1, 0, 0, 1 )
+[node name="SelectionOutline" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )

@@ -50,15 +50,26 @@ margin_bottom = 127.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ShipAndStats" type="HBoxContainer" parent="Control/VBoxContainer/Top/Container"]
+[node name="CollectablesCount" type="Label" parent="Control/VBoxContainer/Top/Container"]
 margin_right = 245.0
-margin_bottom = 94.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "c: 999999"
+align = 2
+valign = 1
+uppercase = true
+
+[node name="ShipAndStats" type="HBoxContainer" parent="Control/VBoxContainer/Top/Container"]
+margin_top = 12.0
+margin_right = 245.0
+margin_bottom = 97.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ShipTexture" type="TextureRect" parent="Control/VBoxContainer/Top/Container/ShipAndStats"]
 margin_right = 245.0
-margin_bottom = 94.0
+margin_bottom = 85.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
@@ -83,7 +94,7 @@ align = 1
 uppercase = true
 
 [node name="ItemInformation" type="ColorRect" parent="Control/VBoxContainer/Top/Container"]
-margin_top = 98.0
+margin_top = 101.0
 margin_right = 245.0
 margin_bottom = 127.0
 size_flags_vertical = 3
@@ -100,18 +111,19 @@ script = ExtResource( 4 )
 
 [node name="InformationLabel" type="RichTextLabel" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel"]
 margin_right = 160.0
-margin_bottom = 32.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_text = "Health: +10
 Health: +10"
 text = "Health: +10
 Health: +10"
+scroll_active = false
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel"]
 margin_left = 164.0
 margin_right = 240.0
-margin_bottom = 32.0
+margin_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
@@ -122,10 +134,16 @@ margin_right = 76.0
 margin_bottom = 14.0
 text = "Install"
 
-[node name="Unattach" type="Button" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
+[node name="Purchase" type="Button" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
 margin_top = 18.0
 margin_right = 76.0
 margin_bottom = 32.0
+text = "Purchase"
+
+[node name="Unattach" type="Button" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
+margin_top = 36.0
+margin_right = 76.0
+margin_bottom = 50.0
 text = "Unattach"
 
 [node name="Bottom" type="ScrollContainer" parent="Control/VBoxContainer"]
@@ -139,4 +157,5 @@ scroll_vertical_enabled = false
 [node name="ItemsParent" type="HBoxContainer" parent="Control/VBoxContainer/Bottom"]
 
 [connection signal="button_down" from="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Attach" to="." method="_on_Attach_button_down"]
+[connection signal="button_down" from="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Purchase" to="." method="_on_Purchase_button_down"]
 [connection signal="button_down" from="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Unattach" to="." method="_on_Uninstall_button_down"]

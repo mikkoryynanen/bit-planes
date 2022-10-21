@@ -4,7 +4,7 @@ onready var Slot = preload("res://UI/Slot.tscn")
 onready var slots_parent = $Control/VBoxContainer/Top/ListOfSlots/SlotsParent
 onready var items_parent = $Control/VBoxContainer/Bottom/ItemsParent
 onready var information_panel = $Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel
-
+onready var collectables_label: Label = $Control/VBoxContainer/Top/Container/CollectablesCount
 
 var built_slots = []
 var built_items = []
@@ -18,6 +18,8 @@ var preivous_selected_item = null
 func _ready():
 	build_slots()
 
+	update_collectables_label()
+
 
 func build_slots():
 	for built_slot in built_slots:
@@ -27,6 +29,7 @@ func build_slots():
 	selected_slot_type = null
 	preivous_selected_slot = null
 
+	var is_first = true
 	for data in GameData.game_data.slots:
 		var slot = Slot.instance()
 		slots_parent.add_child(slot)
@@ -35,6 +38,10 @@ func build_slots():
 		slot.set_data(data, false)
 
 		built_slots.append(slot)
+
+		if is_first:
+			is_first = false
+			on_slot_selected(data, slot)
 
 
 func build_items():
@@ -45,6 +52,7 @@ func build_items():
 	selected_item_data = null
 	preivous_selected_item = null
 
+	var is_first = true
 	for item_data in filter_slot_items(GameData.game_data.items, selected_slot_type):
 		var slot = Slot.instance()
 		items_parent.add_child(slot)
@@ -55,6 +63,14 @@ func build_items():
 		slot.set_data(item_data, is_equipped)
 
 		built_items.append(slot)
+
+		if is_first:
+			is_first = false
+			on_item_selected(item_data, slot)
+
+
+func update_collectables_label():
+	collectables_label.text = str("c:", GameData.game_data.collectables)
 
 
 func on_slot_selected(slot_data, slot):
@@ -77,20 +93,40 @@ func on_item_selected(item_data, slot):
 	preivous_selected_item = slot
 	slot.set_on_select(true)
 
-	if GameData.is_item_attached(item_data.id):
-		information_panel.show_attahed_item_content()
+	if !GameData.is_item_owned(item_data.id):
+		information_panel.show_purchaseable_item_content()
 	else:
-		information_panel.show_unattached_item_content()
-	
+		if GameData.is_item_attached(item_data.id):
+			information_panel.show_attahed_item_content()
+		else:
+			information_panel.show_unattached_item_content()
+
 	# Build info text
 	var information_text = ""
 	for value in item_data.values:
 		# var val = int(value.value)
 		# var prefix = "+" if value.value > 0 else "-"
-		information_text += str(
-			GameData.ValueType.keys()[value.type], " +", value.value, "\n"
-			)
+		information_text += str(GameData.ValueType.keys()[value.type], " +", value.value, "\n")
 	information_panel.set_text(information_text)
+
+
+func _on_Attach_button_down():
+	if GameData.attach_item(selected_item_data, selected_slot_type):
+		build_items()
+
+
+func _on_Uninstall_button_down():
+	GameData.unattach_item(selected_slot_type)
+	build_items()
+
+
+func _on_Purchase_button_down():
+	if GameData.purchase_item(selected_item_data):
+		on_item_selected(selected_item_data, preivous_selected_slot)
+		build_items()
+		update_collectables_label()
+	else:
+		printerr("item purchase failed")
 
 
 func filter_slot_items(array: Array, slot):
@@ -100,15 +136,3 @@ func filter_slot_items(array: Array, slot):
 			arr.append(item)
 
 	return arr
-	
-	
-func _on_Attach_button_down():
-	if GameData.attach_item(selected_item_data, selected_slot_type):
-		build_items()
-	else:
-		print("cannot attach item")
-
-
-func _on_Uninstall_button_down():
-	GameData.unattach_item(selected_slot_type)
-	build_items()
