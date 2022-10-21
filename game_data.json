@@ -1,1 +1,45 @@
-{"attached_items":[{"equipped_slot_id":0,"iconSrc":"res://Resources/player.png","id":2,"slot":"weapon"},{"equipped_slot_id":1,"iconSrc":"res://Resources/player.png","id":3,"slot":"weapon"}],"collectables":450,"inventory":[{"equipped_slot_id":-1,"iconSrc":"res://Resources/player.png","id":0,"slot":"weapon"},{"equipped_slot_id":-1,"iconSrc":"res://Resources/player.png","id":3,"slot":"weapon"}]}
+{
+  "attached_items": [
+    {
+      "equipped_slot_id": 0,
+      "iconSrc": "res://Resources/player.png",
+      "id": 0,
+      "name": "Equipped Weapon",
+      "slot": 0,
+      "values": [
+        { "type": 0, "value": "+10" },
+        { "type": 2, "value": "-10" }
+      ]
+    }
+  ],
+  "collectables": 450,
+  "items": [
+    {
+      "equipped_slot_id": 0,
+      "iconSrc": "res://Resources/player.png",
+      "id": 0,
+      "name": "Equipped Weapon",
+      "slot": 0,
+      "values": [
+        { "type": 0, "value": "+10" },
+        { "type": 2, "value": "-10" }
+      ]
+    },
+    {
+      "iconSrc": "res://Resources/player.png",
+      "id": 1,
+      "name": "Basic Weapon",
+      "slot": 0,
+      "values": [
+        { "type": 0, "value": "+30" },
+        { "type": 2, "value": "-30" }
+      ]
+    }
+  ],
+  "slots": [
+    { "iconSrc": "res://Resources/player.png", "name": "Weapon", "slot": 0 },
+    { "iconSrc": "res://Resources/player.png", "name": "Wings", "slot": 1 },
+    { "iconSrc": "res://Resources/player.png", "name": "Core", "slot": 2 },
+    { "iconSrc": "res://Resources/player.png", "name": "Engines", "slot": 3 }
+  ]
+}
