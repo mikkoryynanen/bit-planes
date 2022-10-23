@@ -14,6 +14,8 @@ onready var EnemyGroupScene = preload("res://Entities/Enemy/EnemyGroup.tscn")
 
 
 func _ready():
+	MusicController.play_core()
+
 	Events.connect("on_scored", self, "set_score")
 	Events.connect("on_enemy_destroyed", self, "check_for_enemies")
 	Events.connect("on_collected", self, "on_collected")

@@ -2,7 +2,7 @@ extends Moveable
 
 class_name Enemy
 
-export var health = 1
+export var health = 20
 export var collectablesCount = 3
 
 var direction: Vector2
@@ -20,7 +20,7 @@ func _physics_process(delta):
 	set_movement(direction, delta)
 
 func _on_Hitbox_area_entered(area: Area2D):
-	health -= 1
+	health -= PlayerStats.damage
 	if health <= 0:
 		Events.emit_signal("on_scored", 10)
 		Events.emit_signal("on_enemy_destroyed")

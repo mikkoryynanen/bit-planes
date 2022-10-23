@@ -11,7 +11,7 @@ collision_mask = 0
 script = ExtResource( 2 )
 acceleration = 2000
 deacceleration = 1500
-maxSpeed = 300
+max_speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

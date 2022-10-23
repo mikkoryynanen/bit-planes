@@ -4,7 +4,7 @@ const FILE_NAME = "res://game_data.json"
 
 enum SlotType { Weapon, Wings, Core, Engine }
 
-enum ValueType { Damage, Movement, Energy, Speed }
+enum ValueType { Damage, Movement, Energy, FireRate }
 
 var game_data = {
 	"collectables": 450,
@@ -26,7 +26,10 @@ var game_data = {
 			"is_owned": false,
 			"cost": 10,
 			"values":
-			[{"type": ValueType.Damage, "value": "+10"}, {"type": ValueType.Energy, "value": "-10"}]
+			[
+				{"type": ValueType.Damage, "value": "+10"},
+				{"type": ValueType.Movement, "value": "-10"}
+			]
 		},
 		{
 			"id": 1,
@@ -59,7 +62,24 @@ func _ready():
 	game_data = DataLoader.load_file(FILE_NAME)
 
 
-# Helpers =========================================================
+# Stats =========================================================
+func load_player_stats():
+	for attached_item in game_data.attached_items:
+		for value in attached_item.values:
+			# TODO use match statement here
+			# did not work i last used it tho
+			if value.type == ValueType.Damage:
+				PlayerStats.damage += int(value.value)
+			elif value.type == ValueType.Movement:
+				PlayerStats.movement += int(value.value)
+			elif value.type == ValueType.FireRate:
+				PlayerStats.fire_rate += int(value.value)
+
+	
+# ===============================================================
+
+
+# Items =========================================================
 func add_collected_items(added_collectables_count):
 	game_data.collectables += added_collectables_count
 	DataLoader.save_file(FILE_NAME, to_json(game_data))
@@ -105,20 +125,6 @@ func unattach_item(slot_id: int):
 		if game_data.attached_items[i].slot == slot_id:
 			game_data.attached_items.remove(i)
 			print(str("Unattached item from slot ", slot_id))
-
-
-# func add_to_inventory(item_data):
-# 	var foundIndex = game_data.attached_items.find(item_data)
-# 	if foundIndex != -1:
-# 		game_data.attached_items.remove(foundIndex)
-
-# 		item_data.equipped_slot_id = -1
-
-# 		game_data.items.append(item_data)
-
-# 		DataLoader.save_file(FILE_NAME, to_json(game_data))
-# 	else:
-# 		printerr("could not find index from attached items")
 
 
 func is_item_slot_occupied(slot) -> bool:

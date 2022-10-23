@@ -7,20 +7,24 @@ var shootTimer: float
 
 const Projectile = preload("res://Entities/Projectile/Projectile.tscn")
 
-enum {
-   RUNNING,
-   COMPLETED
-}
+enum { RUNNING, COMPLETED }
 var state = RUNNING
 
-func _ready():
 
+func _ready():
 	screenSize = get_viewport_rect().size
 
 	Events.connect("on_level_completed", self, "level_completed")
 
+	self.acceleration += PlayerStats.movement
+	self.deacceleration += PlayerStats.movement
+	self.max_speed += PlayerStats.movement * 0.25
+	self.shootInterval -= PlayerStats.fire_rate
+
+
 func level_completed():
 	state = COMPLETED
+
 
 func _process(delta):
 	if state == COMPLETED:
@@ -34,10 +38,11 @@ func _process(delta):
 			shootTimer = 0
 
 		shootTimer += delta
-		if shootTimer  >= shootInterval:
+		if shootTimer >= shootInterval:
 			shootTimer = 0
 	elif Input.is_action_just_released("shoot"):
 		shootTimer = 0
+
 
 func _physics_process(delta):
 	if state == COMPLETED:
@@ -49,7 +54,6 @@ func _physics_process(delta):
 	inputVector.normalized()
 
 	set_movement(inputVector, delta)
-		
+
 	position.x = clamp(position.x, 8, screenSize.x - 8)
-	position.y = clamp(position.y, 8, screenSize.y  - 8)
-	
+	position.y = clamp(position.y, 8, screenSize.y - 8)

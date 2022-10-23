@@ -48,6 +48,8 @@ DataLoader="*res://Data/DataLoader.gd"
 GameData="*res://Data/GameData.gd"
 EnemyGroups="*res://Data/EnemyGroups.gd"
 SceneLoader="*res://Utils/SceneLoader.gd"
+PlayerStats="*res://Data/PlayerStats.gd"
+MusicController="*res://Sounds/MusicController.gd"
 
 [debug]
 
