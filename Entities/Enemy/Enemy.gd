@@ -16,14 +16,24 @@ func init(_dir: Vector2, _group: EnemyGroup):
 	direction = _dir
 	group = _group
 
+
+func _ready():
+	Events.emit_signal("add_stream_player", self)
+
+
 func _physics_process(delta):
 	set_movement(direction, delta)
 
+
 func _on_Hitbox_area_entered(area: Area2D):
 	health -= PlayerStats.damage
+
+	Events.emit_signal("play_entity_sound", self, Sound.Hit)
+
 	if health <= 0:
 		Events.emit_signal("on_scored", 10)
 		Events.emit_signal("on_enemy_destroyed")
+		Events.emit_signal("play_entity_sound", self, Sound.Explosion)
 
 		# Release collectables upon dying
 		for i in collectablesCount:

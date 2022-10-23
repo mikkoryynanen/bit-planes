@@ -1,6 +1,6 @@
 extends Moveable
 
-export var shootInterval = 0.75
+export var shootInterval = 0.25
 
 var screenSize
 var shootTimer: float
@@ -21,6 +21,8 @@ func _ready():
 	self.max_speed += PlayerStats.movement * 0.25
 	self.shootInterval -= PlayerStats.fire_rate
 
+	Events.emit_signal("add_stream_player", self)
+
 
 func level_completed():
 	state = COMPLETED
@@ -36,6 +38,8 @@ func _process(delta):
 			get_parent().add_child(projectile)
 			projectile.global_position = self.global_position
 			shootTimer = 0
+
+			Events.emit_signal("play_entity_sound", self, Sound.Shoot)
 
 		shootTimer += delta
 		if shootTimer >= shootInterval:

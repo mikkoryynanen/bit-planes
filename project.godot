@@ -50,6 +50,7 @@ EnemyGroups="*res://Data/EnemyGroups.gd"
 SceneLoader="*res://Utils/SceneLoader.gd"
 PlayerStats="*res://Data/PlayerStats.gd"
 MusicController="*res://Sounds/MusicController.gd"
+Sound="*res://Sounds/SoundController.gd"
 
 [debug]
 

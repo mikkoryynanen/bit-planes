@@ -1,7 +1,7 @@
 extends Node2D
 
 var movement: int
-var damage: int
+var damage: int = 10
 var energy: int
 var fire_rate: int
 
