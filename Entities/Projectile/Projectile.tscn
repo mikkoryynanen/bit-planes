@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Entities/Projectile/Projectile.gd" type="Script" id=1]
-[ext_resource path="res://Resources/projectile.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Projectile.png" type="Texture" id=2]
 [ext_resource path="res://Hitboxes and Hurtboxes/Hitbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1, 8 )
+extents = Vector2( 3, 4 )
 
 [node name="Projectile" type="KinematicBody2D"]
 collision_layer = 4

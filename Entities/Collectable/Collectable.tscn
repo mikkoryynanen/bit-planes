@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Resources/Collectable.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Currency.png" type="Texture" id=1]
 [ext_resource path="res://Hitboxes and Hurtboxes/Hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Collectable/Collectable.gd" type="Script" id=3]
 
