@@ -27,7 +27,7 @@ func _process(delta):
 	elapsed_time += delta
 	if enemy_groups.size() > 0 and current_group < enemy_groups.size():
 		if elapsed_time >= enemy_groups[current_group].spawn_time:
-			spawn_enemy_groups()
+			spawn_enemy_groups(enemy_groups[current_group].enemies_count, enemy_groups[current_group].path)
 			current_group += 1
 
 	if current_group >= enemy_groups.size() and spawnedEnemiesCount <= 0:
@@ -36,17 +36,15 @@ func _process(delta):
 		Events.emit_signal("on_level_completed")
 
 
-func spawn_enemy_groups():
-	# TODO logic to spawn enemy waves when certain time has passed
-	# since we are not moving the camera this is the only viable option
+func spawn_enemy_groups(count: int, path_index: int):
+	spawnedEnemiesCount += count
 
-	var enemyGroup = EnemyGroupScene.instance()
-	self.add_child(enemyGroup)
+	var enemy_group = EnemyGroupScene.instance()
+	self.add_child(enemy_group)
+	enemy_group.init(count, path_index)
+	
 
-	spawnedEnemiesCount += enemyGroup.count
-
-
-func check_for_enemies():
+func check_for_enemies(entity):
 	# NOTE This is also called from oustide view destroy
 	# Make sure no score is given here, just for tracking
 	spawnedEnemiesCount -= 1

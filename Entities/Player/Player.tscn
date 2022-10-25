@@ -9,9 +9,9 @@
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 0
 script = ExtResource( 2 )
-acceleration = 2000
+acceleration = 1000
 deacceleration = 1500
-max_speed = 100
+max_speed = 250
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

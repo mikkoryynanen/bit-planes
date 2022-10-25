@@ -61,19 +61,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Build" type="Button" parent="MarginContainer/ButtonContainer"]
-visible = false
-margin_top = 61.0
-margin_right = 290.0
-margin_bottom = 66.0
-theme = SubResource( 3 )
-text = "Build"
-
 [node name="Play" type="TextureButton" parent="MarginContainer/ButtonContainer"]
 margin_left = 113.0
-margin_top = 46.0
+margin_top = 28.0
 margin_right = 177.0
-margin_bottom = 78.0
+margin_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
@@ -95,19 +87,18 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Settings2" type="TextureButton" parent="MarginContainer/ButtonContainer"]
-visible = false
+[node name="Build" type="TextureButton" parent="MarginContainer/ButtonContainer"]
 margin_left = 113.0
-margin_top = 46.0
+margin_top = 64.0
 margin_right = 177.0
-margin_bottom = 78.0
+margin_bottom = 96.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
 texture_normal = SubResource( 6 )
 texture_pressed = SubResource( 7 )
 
-[node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Settings2"]
+[node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Build"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -117,7 +108,7 @@ margin_bottom = -10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Start game"
+text = "Build"
 align = 1
 valign = 1
 uppercase = true
@@ -149,5 +140,5 @@ align = 1
 valign = 1
 uppercase = true
 
-[connection signal="button_down" from="MarginContainer/ButtonContainer/Build" to="." method="_on_Build_button_down"]
 [connection signal="button_down" from="MarginContainer/ButtonContainer/Play" to="." method="_on_Play_button_down"]
+[connection signal="button_down" from="MarginContainer/ButtonContainer/Build" to="." method="_on_Build_button_down"]

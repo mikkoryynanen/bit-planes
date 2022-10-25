@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Enemy_Paths/Path.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 61, -27, -42.9542, -30.9341, 42.9542, 30.9341, 71, 72, -78.6609, 4.59592, 78.6609, -4.59592, 222, 111, 0, 0, 0, 0, 350, 32 )
+}
+
+[node name="Path" type="Path2D"]
+position = Vector2( -2, 11.5691 )
+scale = Vector2( 1, 1.31738 )
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="PathFollow" type="PathFollow2D" parent="."]
+position = Vector2( 61, -27 )
+rotation = 1.98533
+loop = false

@@ -4,23 +4,33 @@
       "groups": [
         {
           "enemies_count": 3,
-          "spawn_time": 0,
-          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
-        },
-        {
-          "enemies_count": 3,
           "spawn_time": 1,
-          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+          "path": 0
         },
         {
           "enemies_count": 3,
-          "spawn_time": 5,
-          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+          "spawn_time": 10,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+          "path": 0
         },
         {
           "enemies_count": 3,
-          "spawn_time": 8,
-          "enemy_scene": "res://Entities/Enemy/Enemy.tscn"
+          "spawn_time": 18,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+          "path": 1
+        },
+        {
+          "enemies_count": 4,
+          "spawn_time": 26,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+          "path": 1
+        },
+        {
+          "enemies_count": 5,
+          "spawn_time": 34,
+          "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+          "path": 2
         }
       ]
     }

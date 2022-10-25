@@ -1,6 +1,6 @@
 extends Moveable
 
-export var shootInterval = 0.25
+export var shootInterval = 0.4
 
 var screenSize
 var shootTimer: float
@@ -26,7 +26,7 @@ func _ready():
 
 func level_completed():
 	state = COMPLETED
-
+	set_movement(Vector2.ZERO, 0)
 
 func _process(delta):
 	if state == COMPLETED:
