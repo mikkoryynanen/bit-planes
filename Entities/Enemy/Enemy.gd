@@ -33,7 +33,7 @@ func _on_Hitbox_area_entered(area: Area2D):
 		# Release collectables upon dying
 		for i in collectablesCount:
 			var collectable = Collectable.instance()
-			get_tree().get_root().call_deferred("add_child", collectable)
+			get_tree().get_root().get_node("World").call_deferred("add_child", collectable)
 			
 			collectable.global_position = self.global_position + Vector2.ONE * randf() * 15
 			

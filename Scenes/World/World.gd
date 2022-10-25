@@ -20,7 +20,7 @@ func _ready():
 	Events.connect("on_enemy_destroyed", self, "check_for_enemies")
 	Events.connect("on_collected", self, "on_collected")
 
-	enemy_groups = EnemyGroups.load_level_enemies(0).groups
+	enemy_groups = EnemyGroups.load_level_enemies(GameData.current_level_index).groups
 
 
 func _process(delta):
@@ -34,6 +34,7 @@ func _process(delta):
 		# Wait X amount of time, until all remaining enemies have dissapeared
 		# TODO Take us back to main menu
 		Events.emit_signal("on_level_completed")
+		
 
 
 func spawn_enemy_groups(count: int, path_index: int):

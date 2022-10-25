@@ -6,61 +6,24 @@ enum SlotType { Weapon, Wings, Core, Engine }
 
 enum ValueType { Damage, Movement, Energy, FireRate }
 
-var game_data = {
-	"collectables": 450,
-	"attached_items": [],
-	"slots":
-	[
-		{"iconSrc": "res://Resources/player.png", "slot": SlotType.Weapon, "name": "Weapon"},
-		{"iconSrc": "res://Resources/player.png", "slot": SlotType.Wings, "name": "Wings"},
-		{"iconSrc": "res://Resources/player.png", "slot": SlotType.Core, "name": "Core"},
-		{"iconSrc": "res://Resources/player.png", "slot": SlotType.Engine, "name": "Engines"}
-	],
-	"items":
-	[
-		{
-			"id": 0,
-			"iconSrc": "res://Resources/player.png",
-			"slot": SlotType.Weapon,
-			"name": "Basic Weapon",
-			"is_owned": false,
-			"cost": 10,
-			"values":
-			[
-				{"type": ValueType.Damage, "value": "+10"},
-				{"type": ValueType.Movement, "value": "-10"}
-			]
-		},
-		{
-			"id": 1,
-			"iconSrc": "res://Resources/player.png",
-			"slot": SlotType.Weapon,
-			"name": "Basic Weapon",
-			"is_owned": false,
-			"cost": 10,
-			"values":
-			[{"type": ValueType.Damage, "value": "+10"}, {"type": ValueType.Energy, "value": "-10"}]
-		},
-		# {"iconSrc": "res://Resources/player.png", "slot": "weapon", "name": "Advanced Weapon"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "weapon", "name": "Epic Weapon"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "weapon", "name": "Basic Weapon"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Wings", "name": "Basic Wings"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Wings", "name": "Medium Wings"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Wings", "name": "Advanced Wings"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Core", "name": "Basic Core"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Core", "name": "Advanced Core"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Core", "name": "Epic Core"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Engines", "name": "Basic Engines"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Engines", "name": "Medium Engines"},
-		# {"iconSrc": "res://Resources/player.png", "slot": "Engines", "name": "Advanced Engines"},
-	]
-}
+var game_data = {}
+var current_level_index = 0
 
 
 func _ready():
 	# DataLoader.save_file(FILE_NAME, to_json(game_data))
 	game_data = DataLoader.load_file(FILE_NAME)
 
+
+# Level =========================================================
+func load_unlocked_levels():
+	return game_data.unlocked_levels
+
+func unlock_next_level():
+	game_data.unlocked_levels.append(len(game_data.unlocked_levels))
+	DataLoader.save_file(FILE_NAME, to_json(game_data))
+
+# ===============================================================
 
 # Stats =========================================================
 func load_player_stats():
@@ -75,7 +38,7 @@ func load_player_stats():
 			elif value.type == ValueType.FireRate:
 				PlayerStats.fire_rate += int(value.value)
 
-	
+
 # ===============================================================
 
 

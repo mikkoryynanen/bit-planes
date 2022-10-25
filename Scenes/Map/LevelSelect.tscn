@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Map/LevelSelect.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Collectable.png" type="Texture" id=2]
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=2]
+width = 16
+height = 16
+noise = SubResource( 1 )
+
+[node name="LevelSelect" type="TextureButton"]
+self_modulate = Color( 0.898039, 0.215686, 0.215686, 1 )
+disabled = true
+texture_normal = ExtResource( 2 )
+texture_disabled = SubResource( 2 )
+script = ExtResource( 1 )
+
+[node name="LevelNumber" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+text = "1"
+align = 1
+valign = 1

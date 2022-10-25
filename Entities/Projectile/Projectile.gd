@@ -10,7 +10,7 @@ func _physics_process(delta):
 
 func _on_Hitbox_area_entered(area:Area2D):
 	var hit = HitParticle.instance()
-	get_tree().get_root().call_deferred("add_child", hit)
+	get_tree().get_root().get_node("World").call_deferred("add_child", hit)
 	hit.global_position = self.global_position
 	hit.emitting = true
 			
