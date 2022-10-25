@@ -4,8 +4,10 @@ class_name EnemyGroup
 
 var enemies_count = 0
 
+
 func _ready():
 	Events.connect("on_enemy_destroyed", self, "enemy_destroyed")
+
 
 func init(count: int, path_index: int):
 	enemies_count = count
@@ -26,9 +28,8 @@ func init(count: int, path_index: int):
 		# enemy.init(Vector2.RIGHT, self)
 
 
-
 func enemy_destroyed(entity):
-	enemies_count -=1
+	enemies_count -= 1
 	if enemies_count <= 0:
 		queue_free()
 

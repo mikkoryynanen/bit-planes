@@ -2,11 +2,13 @@ extends KinematicBody2D
 
 class_name Enemy
 
-export var health = 50
+export var health = 75
 export var collectablesCount = 3
 
 var direction: Vector2
 var group: EnemyGroup = null
+
+onready var animation_player = $AnimationPlayer
 
 const Collectable = preload("res://Entities/Collectable/Collectable.tscn")
 
@@ -42,4 +44,5 @@ func _on_Hitbox_area_entered(area: Area2D):
 
 	else:
 		Events.emit_signal("play_entity_sound", self, Sound.Hit)
-			
+		animation_player.play("Flash")
+
