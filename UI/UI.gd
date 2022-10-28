@@ -22,10 +22,12 @@ func update_score(value):
 	scoreLabel.set_text(str(value))
 
 func level_completed():
+	MusicController.stop_music()
 	gameOver.visible = true
 
 func _on_Continue_button_down():
 	Events.emit_signal("play_entity_sound", self, Sound.Button)
+
 	GameData.unlock_next_level()
 	SceneLoader.load_menu_main()
 

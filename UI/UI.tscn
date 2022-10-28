@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/UI.gd" type="Script" id=1]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://Resources/VerticalProgressUnder.png" type="Texture" id=3]
 [ext_resource path="res://Resources/VerticalProgressFill.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Button_Up.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Button_Down.png" type="Texture" id=6]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -52,15 +54,29 @@ text = "LEVEL COMPLETED!"
 align = 1
 valign = 1
 
-[node name="Continue" type="Button" parent="GameOver"]
+[node name="Continue" type="TextureButton" parent="GameOver"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -38.0
-margin_top = -40.0
-margin_right = 38.0
-margin_bottom = -20.0
-text = "Continue"
+margin_left = -32.0
+margin_top = -60.0
+margin_right = 32.0
+margin_bottom = -28.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="GameOver/Continue"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -7.0
+text = "Ok"
+align = 1
+valign = 1
+uppercase = true
 
 [connection signal="button_down" from="GameOver/Continue" to="." method="_on_Continue_button_down"]

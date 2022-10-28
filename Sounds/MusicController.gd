@@ -21,3 +21,7 @@ func play_menu():
 func play_core():
 	stream.set_stream(music[1])
 	stream.play()
+
+
+func stop_music():
+	stream.playing = false
