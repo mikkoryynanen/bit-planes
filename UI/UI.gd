@@ -14,7 +14,7 @@ func _ready():
 	Events.emit_signal("add_stream_player", self)
 
 func update_score(value):
-	scoreLabel.set_text(str("Score: ", value))
+	scoreLabel.set_text(str(value))
 
 func level_completed():
 	gameOver.visible = true

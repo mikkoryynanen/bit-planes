@@ -11,12 +11,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ScoreLabel" type="Label" parent="Control"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 115.0
-margin_bottom = 41.0
+anchor_right = 1.0
+margin_bottom = 25.0
 theme = ExtResource( 2 )
-text = "Score: 999999"
+text = "9999999"
+align = 1
+valign = 1
 
 [node name="GameOver" type="Control" parent="."]
 anchor_right = 1.0
