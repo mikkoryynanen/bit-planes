@@ -1,12 +1,14 @@
 extends KinematicBody2D
 
 export var speed = 250
+var direction = Vector2.UP
 
 const HitParticle = preload("res://Effects/HitParticle.tscn")
 
 
 func _physics_process(delta):
-	move_and_collide(Vector2.UP * delta * speed)
+	move_and_collide(direction * delta * speed)
+
 
 func _on_Hitbox_area_entered(area:Area2D):
 	var hit = HitParticle.instance()

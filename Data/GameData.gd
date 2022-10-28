@@ -36,7 +36,7 @@ func load_player_stats():
 			elif value.type == ValueType.Movement:
 				PlayerStats.movement += int(value.value)
 			elif value.type == ValueType.FireRate:
-				PlayerStats.fire_rate += int(value.value)
+				PlayerStats.fire_rate = float(value.value)
 
 
 # ===============================================================

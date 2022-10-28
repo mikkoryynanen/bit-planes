@@ -1,6 +1,7 @@
 extends Moveable
 
-export var shootInterval = 0.4
+var shoot_interval: float = 0.4
+var barrel_count: int = 4
 
 var screenSize
 var shootTimer: float
@@ -19,7 +20,11 @@ func _ready():
 	self.acceleration += PlayerStats.movement
 	self.deacceleration += PlayerStats.movement
 	self.max_speed += PlayerStats.movement * 0.25
-	self.shootInterval -= PlayerStats.fire_rate
+	self.shoot_interval = PlayerStats.fire_rate
+	print("shoot_interval ", self.shoot_interval)
+	# Set the barrel_count based on fire rate
+	self.barrel_count -= PlayerStats.fire_rate / 10.0
+	print("self.barrel_count ", self.barrel_count)
 
 	# attached item visuals
 	for item in GameData.game_data.attached_items:
@@ -37,17 +42,21 @@ func _process(delta):
 	if state == COMPLETED:
 		return
 
+	# Shooting
 	if Input.is_action_pressed("shoot"):
 		if shootTimer <= 0:
 			var projectile = Projectile.instance()
 			get_parent().add_child(projectile)
-			projectile.global_position = self.global_position
+			projectile.global_position = self.global_position + Vector2(rand_range(-barrel_count * 2, barrel_count * 2), 0)
+			var dir = Vector2.UP.rotated((rand_range(-0.1, 0.1)))
+			projectile.direction = dir
+			projectile.global_rotation = dir.x
 			shootTimer = 0
 
 			Events.emit_signal("play_entity_sound", self, Sound.Shoot)
 
 		shootTimer += delta
-		if shootTimer >= shootInterval:
+		if shootTimer >= shoot_interval:
 			shootTimer = 0
 	elif Input.is_action_just_released("shoot"):
 		shootTimer = 0
