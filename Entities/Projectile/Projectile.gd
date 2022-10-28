@@ -1,3 +1,4 @@
+class_name Projectile
 extends KinematicBody2D
 
 var speed = 250

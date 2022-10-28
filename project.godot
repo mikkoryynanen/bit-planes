@@ -24,10 +24,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/Enemy/EnemyGroup.gd"
 }, {
+"base": "Node2D",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Nodes/Health.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Moveable",
 "language": "GDScript",
 "path": "res://Entities/Moveable.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://Entities/Projectile/Projectile.gd"
 }, {
 "base": "Node2D",
 "class": "Shoot",
@@ -38,7 +48,9 @@ _global_script_class_icons={
 "Collectable": "",
 "Enemy": "",
 "EnemyGroup": "",
+"Health": "",
 "Moveable": "",
+"Projectile": "",
 "Shoot": ""
 }
 

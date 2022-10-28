@@ -6,12 +6,15 @@ enum { RUNNING, COMPLETED }
 var state = RUNNING
 
 onready var shoot: Shoot = $Shoot
+onready var health := $Health
+onready var animation_player = $HitFlashPlayer
 
 
 func _ready():
 	screenSize = get_viewport_rect().size
 
 	Events.connect("on_level_completed", self, "level_completed")
+	Events.emit_signal("add_stream_player", self)
 
 	self.acceleration += PlayerStats.movement
 	self.deacceleration += PlayerStats.movement
@@ -21,6 +24,8 @@ func _ready():
 	# Set the barrel_count based on fire rate
 	shoot.barrel_count -= PlayerStats.fire_rate / 10.0
 	shoot.shoot_direction = Vector2.UP
+
+	health.value = PlayerStats.health
 
 	# attached item visuals
 	for item in GameData.game_data.attached_items:
@@ -56,3 +61,15 @@ func _physics_process(delta):
 
 	position.x = clamp(position.x, 8, screenSize.x - 8)
 	position.y = clamp(position.y, 8, screenSize.y - 8)
+
+
+func _on_Hitbox_area_entered(area: Area2D):
+	if area.get_parent() is Projectile:
+		if health.take_damage(10):
+			Events.emit_signal("on_level_completed")
+			queue_free()
+		else:
+			Events.emit_signal("play_entity_sound", self, Sound.Hit)
+			animation_player.play("Flash")
+
+		Events.emit_signal("on_take_damage", health.value)

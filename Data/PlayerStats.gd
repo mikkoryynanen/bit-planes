@@ -1,5 +1,6 @@
 extends Node2D
 
+var health: int = 100
 var movement: int = 0
 var damage: int = 5
 var energy: int = 0

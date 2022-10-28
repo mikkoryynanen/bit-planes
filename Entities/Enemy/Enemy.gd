@@ -2,16 +2,17 @@ extends KinematicBody2D
 
 class_name Enemy
 
-export var health = 75
 export var collectablesCount = 3
 
 var direction: Vector2
 var group: EnemyGroup = null
 
-onready var animation_player = $AnimationPlayer
+onready var animation_player = $HitFlashPlayer
 onready var shoot: Shoot = $Shoot
+onready var health := $Health
 
 const Collectable = preload("res://Entities/Collectable/Collectable.tscn")
+
 
 
 # This is set from the enemy group manager
@@ -29,11 +30,11 @@ func _ready():
 	shoot.shoot_direction = Vector2.DOWN
 	shoot.proejctile_speed = 30
 
+	health.value = PlayerStats.health
+
 
 func _on_Hitbox_area_entered(area: Area2D):
-	health -= PlayerStats.damage
-	
-	if health <= 0:
+	if health.take_damage(PlayerStats.damage):
 		Events.emit_signal("on_scored", 10)
 		Events.emit_signal("on_enemy_destroyed", get_parent().get_parent())
 		Events.emit_signal("play_entity_sound", self, Sound.Explosion)

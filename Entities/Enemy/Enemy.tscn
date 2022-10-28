@@ -4,8 +4,10 @@
 [ext_resource path="res://Entities/Enemy/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Hitboxes and Hurtboxes/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Shoot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Health.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/HitFlashPlayer.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 uniform vec4 flash_color: hint_color = vec4(1.0);
@@ -17,49 +19,17 @@ void fragment() {
 	COLOR = color;
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 3 )
 shader_param/flash_color = Color( 1, 0, 0, 1 )
 shader_param/flash_modifier = 0.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "Flash"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 1.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
 [node name="Enemy" type="KinematicBody2D"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 2 )
@@ -67,6 +37,8 @@ script = ExtResource( 2 )
 [node name="Shoot" parent="." instance=ExtResource( 4 )]
 projectile_collision_layers = 16
 projectile_collision_masks = 1
+
+[node name="Health" parent="." instance=ExtResource( 5 )]
 
 [node name="Sprite" type="Sprite" parent="."]
 use_parent_material = true
@@ -80,9 +52,7 @@ collision_mask = 4
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Flash = SubResource( 4 )
-anims/RESET = SubResource( 5 )
+[node name="HitFlashPlayer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 
