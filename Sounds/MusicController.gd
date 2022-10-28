@@ -13,8 +13,9 @@ func _ready():
 
 
 func play_menu():
-	stream.set_stream(music[0])
-	stream.play()
+	if !stream.playing:
+		stream.set_stream(music[0])
+		stream.play()
 
 
 func play_core():
