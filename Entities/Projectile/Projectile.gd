@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-export var speed = 250
+var speed = 250
+
 var direction = Vector2.UP
 
 const HitParticle = preload("res://Effects/HitParticle.tscn")

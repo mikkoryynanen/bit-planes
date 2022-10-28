@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Resources/Enemy.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Enemy/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Hitboxes and Hurtboxes/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Shoot.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -59,7 +60,13 @@ tracks/0/keys = {
 
 [node name="Enemy" type="KinematicBody2D"]
 material = SubResource( 3 )
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 2 )
+
+[node name="Shoot" parent="." instance=ExtResource( 4 )]
+projectile_collision_layers = 16
+projectile_collision_masks = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 use_parent_material = true

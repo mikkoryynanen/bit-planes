@@ -9,6 +9,7 @@ var direction: Vector2
 var group: EnemyGroup = null
 
 onready var animation_player = $AnimationPlayer
+onready var shoot: Shoot = $Shoot
 
 const Collectable = preload("res://Entities/Collectable/Collectable.tscn")
 
@@ -20,6 +21,13 @@ func init(_group: EnemyGroup):
 
 func _ready():
 	Events.emit_signal("add_stream_player", self)
+	
+	shoot.shoot_interval = 2
+	# Set the barrel_count based on fire rate
+	shoot.barrel_count = 0
+	shoot.is_shooting = true
+	shoot.shoot_direction = Vector2.DOWN
+	shoot.proejctile_speed = 30
 
 
 func _on_Hitbox_area_entered(area: Area2D):
