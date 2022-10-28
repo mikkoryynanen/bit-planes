@@ -1,8 +1,8 @@
 extends Node2D
 
 var music = [
-	preload("res://Sounds/Music/DavidKBD - Pink Bloom Pack - 08 - Lost Spaceship's Signal.ogg"),
-	preload("res://Sounds/Music/DavidKBD - Pink Bloom Pack - 01 - Pink Bloom.ogg")
+	preload("res://Sounds/Music/Abstraction _Three_Red_Hearts _Pixel_War_2.wav"),
+	preload("res://Sounds/Music/Abstraction - Three Red Hearts - Deep Blue.wav"),
 ]
 var stream: AudioStreamPlayer
 
