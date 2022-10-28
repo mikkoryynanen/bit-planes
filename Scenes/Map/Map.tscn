@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Map/Map.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Back_Down.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Back_Up.png" type="Texture" id=3]
 
 [node name="Map" type="Control"]
 anchor_right = 1.0
@@ -17,3 +19,16 @@ points = PoolVector2Array( 42, 122, 98, 103, 182, 103, 299, 84 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="Back" type="TextureButton" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+
+[connection signal="button_up" from="Back" to="." method="_on_Back_button_up"]

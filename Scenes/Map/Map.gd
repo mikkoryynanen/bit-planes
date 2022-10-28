@@ -37,3 +37,7 @@ func has_unlocked_level(level_index: int):
 
 	return false
 
+
+
+func _on_Back_button_up():
+	SceneLoader.load_menu_main()
