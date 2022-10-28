@@ -1,18 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Resources/Player.png" type="Texture" id=1]
+[ext_resource path="res://UI/PlayerVisual.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Build/BuildMenu.gd" type="Script" id=2]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://Scenes/Build/InformationPanel.gd" type="Script" id=4]
-[ext_resource path="res://Resources/Back.png" type="Texture" id=5]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 5 )
-region = Rect2( 32, 0, 32, 32 )
+[ext_resource path="res://Resources/Button_Medium_Down.png" type="Texture" id=5]
+[ext_resource path="res://UI/Slot.gd" type="Script" id=6]
+[ext_resource path="res://Resources/Button_Medium_Up.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Back_Up.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Back_Down.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Fonts/MenuDynamicFont.tres" type="DynamicFont" id=10]
 
 [node name="BuildMenu" type="Control"]
 anchor_right = 1.0
@@ -68,6 +65,7 @@ margin_right = 61.0
 margin_bottom = 111.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 6 )
 
 [node name="Container" type="VBoxContainer" parent="Control/VBoxContainer/Top"]
 margin_left = 65.0
@@ -82,20 +80,21 @@ margin_bottom = 82.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ShipTexture" type="TextureRect" parent="Control/VBoxContainer/Top/Container/ShipAndStats"]
+[node name="Ship" type="Control" parent="Control/VBoxContainer/Top/Container/ShipAndStats"]
 margin_right = 245.0
 margin_bottom = 82.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 6
+
+[node name="PlayerVisual" parent="Control/VBoxContainer/Top/Container/ShipAndStats/Ship" instance=ExtResource( 1 )]
+position = Vector2( 122, 41 )
+scale = Vector2( 4, 4 )
 
 [node name="Stats" type="ColorRect" parent="Control/VBoxContainer/Top/Container/ShipAndStats"]
 visible = false
 margin_left = 164.0
 margin_right = 245.0
-margin_bottom = 94.0
+margin_bottom = 82.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
@@ -119,14 +118,11 @@ color = Color( 0.192157, 0.192157, 0.192157, 1 )
 [node name="InformationPanel" type="HBoxContainer" parent="Control/VBoxContainer/Top/Container/ItemInformation"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_bottom = 3.0
 script = ExtResource( 4 )
 
 [node name="InformationLabel" type="RichTextLabel" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel"]
-margin_right = 172.0
-margin_bottom = 32.0
+margin_right = 137.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_text = "Health: +10
@@ -135,31 +131,76 @@ text = "Health: +10
 Health: +10"
 scroll_active = false
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel"]
-margin_left = 176.0
-margin_right = 240.0
-margin_bottom = 32.0
+[node name="ButtonsContainer" type="HBoxContainer" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel"]
+margin_left = 141.0
+margin_right = 245.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 0.1
 alignment = 2
 
-[node name="Attach" type="Button" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
-margin_right = 64.0
-margin_bottom = 8.0
-text = "Install"
+[node name="Attach" type="TextureButton" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
+margin_right = 32.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
 
-[node name="Purchase" type="Button" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
-margin_top = 12.0
-margin_right = 64.0
-margin_bottom = 20.0
-text = "Purchase"
+[node name="Label" type="Label" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Attach"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 1.0
+margin_right = -2.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 10 )
+text = "Fix"
+align = 1
+valign = 1
+uppercase = true
 
-[node name="Unattach" type="Button" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
-margin_top = 24.0
-margin_right = 64.0
-margin_bottom = 32.0
-text = "Unattach"
+[node name="Purchase" type="TextureButton" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Purchase"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 1.0
+margin_right = -2.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 10 )
+text = "Buy"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Unattach" type="TextureButton" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer"]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Unattach"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 1.0
+margin_right = -2.0
+margin_bottom = -3.0
+custom_fonts/font = ExtResource( 10 )
+text = "remove"
+align = 1
+valign = 1
+uppercase = true
 
 [node name="Bottom" type="ScrollContainer" parent="Control/VBoxContainer"]
 margin_top = 136.0
@@ -173,13 +214,12 @@ scroll_vertical_enabled = false
 
 [node name="Back" type="TextureButton" parent="Control"]
 rect_min_size = Vector2( 16, 16 )
-rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture_normal = SubResource( 1 )
-texture_pressed = SubResource( 2 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
 
 [connection signal="button_down" from="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Attach" to="." method="_on_Attach_button_down"]
 [connection signal="button_down" from="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Purchase" to="." method="_on_Purchase_button_down"]
 [connection signal="button_down" from="Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel/ButtonsContainer/Unattach" to="." method="_on_Uninstall_button_down"]
-[connection signal="button_down" from="Control/Back" to="." method="_on_Back_button_down"]
+[connection signal="button_up" from="Control/Back" to="." method="_on_Back_button_up"]

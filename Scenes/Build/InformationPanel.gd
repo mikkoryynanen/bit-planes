@@ -1,9 +1,9 @@
 extends HBoxContainer
 
 onready var information_label: RichTextLabel = $InformationLabel
-onready var attach_button: Button = $ButtonsContainer/Attach
-onready var unattach_button: Button = $ButtonsContainer/Unattach
-onready var purchase_button: Button = $ButtonsContainer/Purchase
+onready var attach_button: TextureButton = $ButtonsContainer/Attach
+onready var unattach_button: TextureButton = $ButtonsContainer/Unattach
+onready var purchase_button: TextureButton = $ButtonsContainer/Purchase
 
 
 func _ready():

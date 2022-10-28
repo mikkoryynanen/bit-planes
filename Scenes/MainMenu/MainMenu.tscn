@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Fonts/MenuDynamicFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://Menus/MainMenu/MainMenu.gd" type="Script" id=3]
-[ext_resource path="res://Resources/Button.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Button_Up.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Button_Down.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Resources/Fonts/PublicPixel-z84yD.ttf"
@@ -13,14 +14,6 @@ font_data = SubResource( 1 )
 
 [sub_resource type="Theme" id=3]
 Button/fonts/font = ExtResource( 1 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 64, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 64, 32 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -69,10 +62,11 @@ margin_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
-texture_normal = SubResource( 6 )
-texture_pressed = SubResource( 7 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Play"]
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -95,10 +89,11 @@ margin_bottom = 96.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
-texture_normal = SubResource( 6 )
-texture_pressed = SubResource( 7 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Build"]
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -122,10 +117,11 @@ margin_bottom = 114.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
-texture_normal = SubResource( 6 )
-texture_pressed = SubResource( 7 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Settings3"]
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -140,5 +136,5 @@ align = 1
 valign = 1
 uppercase = true
 
-[connection signal="button_down" from="MarginContainer/ButtonContainer/Play" to="." method="_on_Play_button_down"]
-[connection signal="button_down" from="MarginContainer/ButtonContainer/Build" to="." method="_on_Build_button_down"]
+[connection signal="button_up" from="MarginContainer/ButtonContainer/Play" to="." method="_on_Play_button_up"]
+[connection signal="button_up" from="MarginContainer/ButtonContainer/Build" to="." method="_on_Build_button_up"]

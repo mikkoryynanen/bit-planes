@@ -22,7 +22,7 @@ func _process(delta):
 	spawn_timer += delta
 	if spawn_timer >= 1.5:
 		spawn_timer = 0
-			
+
 		if spawned_enemies_count < enemies_count:
 			var EnemyPath = load(str("res://Enemy_Paths/Level_0/Path_", path_index, ".tscn"))
 			var enemy_path = EnemyPath.instance()

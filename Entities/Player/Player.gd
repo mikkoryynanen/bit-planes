@@ -21,12 +21,17 @@ func _ready():
 	self.max_speed += PlayerStats.movement * 0.25
 	self.shootInterval -= PlayerStats.fire_rate
 
+	# attached item visuals
+	for item in GameData.game_data.attached_items:
+		$PlayerVisual.set_slot_visual(item.slot, item.sprite_frame)
+
 	Events.emit_signal("add_stream_player", self)
 
 
 func level_completed():
 	state = COMPLETED
 	set_movement(Vector2.ZERO, 0)
+
 
 func _process(delta):
 	if state == COMPLETED:

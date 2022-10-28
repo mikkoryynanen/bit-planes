@@ -27,14 +27,15 @@ func _process(delta):
 	elapsed_time += delta
 	if enemy_groups.size() > 0 and current_group < enemy_groups.size():
 		if elapsed_time >= enemy_groups[current_group].spawn_time:
-			spawn_enemy_groups(enemy_groups[current_group].enemies_count, enemy_groups[current_group].path)
+			spawn_enemy_groups(
+				enemy_groups[current_group].enemies_count, enemy_groups[current_group].path
+			)
 			current_group += 1
 
 	if current_group >= enemy_groups.size() and spawnedEnemiesCount <= 0:
 		# Wait X amount of time, until all remaining enemies have dissapeared
 		# TODO Take us back to main menu
 		Events.emit_signal("on_level_completed")
-		
 
 
 func spawn_enemy_groups(count: int, path_index: int):
@@ -43,7 +44,7 @@ func spawn_enemy_groups(count: int, path_index: int):
 	var enemy_group = EnemyGroupScene.instance()
 	self.add_child(enemy_group)
 	enemy_group.init(count, path_index)
-	
+
 
 func check_for_enemies(entity):
 	# NOTE This is also called from oustide view destroy

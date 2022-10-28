@@ -4,5 +4,5 @@
 font_path = "res://Resources/Fonts/PublicPixel-z84yD.ttf"
 
 [resource]
-size = 5
+size = 4
 font_data = SubResource( 1 )

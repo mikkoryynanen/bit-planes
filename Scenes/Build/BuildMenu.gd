@@ -5,6 +5,7 @@ onready var slots_parent = $Control/VBoxContainer/Top/ListOfSlots/SlotsParent
 onready var items_parent = $Control/VBoxContainer/Bottom/ItemsParent
 onready var information_panel = $Control/VBoxContainer/Top/Container/ItemInformation/InformationPanel
 onready var collectables_label: Label = $Control/VBoxContainer/Header/CollectablesCount
+onready var player_visual = $Control/VBoxContainer/Top/Container/ShipAndStats/Ship/PlayerVisual
 
 var built_slots = []
 var built_items = []
@@ -103,11 +104,16 @@ func on_item_selected(item_data, slot):
 
 	# Build info text
 	var information_text = ""
-	for value in item_data.values:
+	for stat_value in item_data.values:
 		# var val = int(value.value)
 		# var prefix = "+" if value.value > 0 else "-"
-		information_text += str(GameData.ValueType.keys()[value.type], " +", value.value, "\n")
+		information_text += str(GameData.ValueType.keys()[stat_value.type], " +", stat_value.value, "\n")
+
+		
 	information_panel.set_text(information_text)
+		
+	# Change ship visual
+	player_visual.set_slot_visual(item_data.slot, item_data.sprite_frame)
 
 
 func _on_Attach_button_down():
@@ -138,5 +144,5 @@ func filter_slot_items(array: Array, slot):
 	return arr
 
 
-func _on_Back_button_down():
+func _on_Back_button_up():
 	SceneLoader.load_menu_main()
