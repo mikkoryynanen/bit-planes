@@ -11,19 +11,26 @@ var current_level_index = 0
 
 
 func _ready():
-	# DataLoader.save_file(FILE_NAME, to_json(game_data))
+	# save()
 	game_data = DataLoader.load_file(FILE_NAME)
+
+
+func save():
+	DataLoader.save_file(FILE_NAME, to_json(game_data))
 
 
 # Level =========================================================
 func load_unlocked_levels():
 	return game_data.unlocked_levels
 
+
 func unlock_next_level():
 	game_data.unlocked_levels.append(len(game_data.unlocked_levels))
-	DataLoader.save_file(FILE_NAME, to_json(game_data))
+	save()
+
 
 # ===============================================================
+
 
 # Stats =========================================================
 func load_player_stats():
@@ -45,7 +52,6 @@ func load_player_stats():
 # Items =========================================================
 func add_collected_items(added_collectables_count):
 	game_data.collectables += added_collectables_count
-	DataLoader.save_file(FILE_NAME, to_json(game_data))
 
 
 func purchase_item(item_data) -> bool:
@@ -58,7 +64,7 @@ func purchase_item(item_data) -> bool:
 
 				# TODO Should we install the item after purchasing?
 
-				DataLoader.save_file(FILE_NAME, to_json(game_data))
+				save()
 				purchased = true
 				break
 
@@ -76,7 +82,7 @@ func attach_item(item_data, slot_id: int) -> bool:
 
 		game_data.attached_items.append(item_data)
 
-		DataLoader.save_file(FILE_NAME, to_json(game_data))
+		save()
 		return true
 	else:
 		printerr("Could not attach item. Item not owned")
