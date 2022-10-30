@@ -2,7 +2,7 @@ extends Node2D
 
 var score = 0
 var collectables = 0
-var spawnedEnemiesCount: int = 0
+var spawned_enemies_count: int = 0
 
 enum { RUNNING, COMPLETED }
 var state = RUNNING
@@ -22,25 +22,25 @@ func _ready():
 
 	enemy_groups = EnemyGroups.load_level_enemies(GameData.current_level_index).groups
 
+	for group in enemy_groups:
+		spawned_enemies_count += group.enemies_count
+
 
 func _process(delta):
 	elapsed_time += delta
-	if enemy_groups.size() > 0 and current_group < enemy_groups.size():
+	if enemy_groups.size() > 0 && current_group < enemy_groups.size():
 		if elapsed_time >= enemy_groups[current_group].spawn_time:
 			spawn_enemy_groups(
 				enemy_groups[current_group].enemies_count, enemy_groups[current_group].path
 			)
 			current_group += 1
 
-	if current_group >= enemy_groups.size() and spawnedEnemiesCount <= 0:
-		# Wait X amount of time, until all remaining enemies have dissapeared
-		# TODO Take us back to main menu
+	# Check for all enemies dead 
+	if current_group >= enemy_groups.size() && spawned_enemies_count <= 0:
 		Events.emit_signal("on_level_completed")
 
 
 func spawn_enemy_groups(count: int, path_index: int):
-	spawnedEnemiesCount += count
-
 	var enemy_group = EnemyGroupScene.instance()
 	self.add_child(enemy_group)
 	enemy_group.init(count, path_index)
@@ -49,7 +49,7 @@ func spawn_enemy_groups(count: int, path_index: int):
 func check_for_enemies(entity):
 	# NOTE This is also called from oustide view destroy
 	# Make sure no score is given here, just for tracking
-	spawnedEnemiesCount -= 1
+	spawned_enemies_count -= 1
 
 
 func on_collected():
