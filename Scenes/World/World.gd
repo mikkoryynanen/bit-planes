@@ -11,6 +11,7 @@ var enemy_groups = []
 var current_group = 0
 
 onready var EnemyGroupScene = preload("res://Entities/Enemy/EnemyGroup.tscn")
+onready var Boss = preload("res://Entities/Boss/Boss.tscn")
 
 
 func _ready():
@@ -19,6 +20,7 @@ func _ready():
 	Events.connect("on_scored", self, "set_score")
 	Events.connect("on_enemy_destroyed", self, "check_for_enemies")
 	Events.connect("on_collected", self, "on_collected")
+	Events.connect("on_boss_reached", self, "boss_reached", [], CONNECT_ONESHOT)
 
 	enemy_groups = EnemyGroups.load_level_enemies(GameData.current_level_index).groups
 
@@ -37,7 +39,7 @@ func _process(delta):
 
 	# Check for all enemies dead 
 	if current_group >= enemy_groups.size() && spawned_enemies_count <= 0:
-		Events.emit_signal("on_level_completed")
+		Events.emit_signal("on_boss_reached")
 
 
 func spawn_enemy_groups(count: int, path_index: int):
@@ -63,3 +65,9 @@ func set_score(value):
 	score += value
 
 	Events.emit_signal("update_score_ui", score)
+
+
+func boss_reached():
+	var boss = Boss.instance()
+	self.add_child(boss)
+	boss.global_position = Vector2(180, 60)

@@ -6,22 +6,11 @@
 [ext_resource path="res://Nodes/Shoot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/Health.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Nodes/HitFlashPlayer.tscn" type="PackedScene" id=6]
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color: hint_color = vec4(1.0);
-uniform float flash_modifier: hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}"
+[ext_resource path="res://Shaders/Flash.tres" type="Shader" id=7]
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 3 )
+shader = ExtResource( 7 )
 shader_param/flash_color = Color( 1, 0, 0, 1 )
 shader_param/flash_modifier = 0.0
 

@@ -18,9 +18,11 @@ func _ready():
 	update_score(0)
 
 	Events.connect("update_score_ui", self, "update_score")
-	Events.connect("on_level_completed", self, "level_completed")
+	Events.connect("on_level_completed", self, "level_completed", [], CONNECT_ONESHOT)
+	Events.connect("on_boss_reached", self, "boss_reached", [], CONNECT_ONESHOT)
 	Events.connect("on_take_damage", self, "take_damage")
 	Events.connect("on_group_cleared", self, "group_cleared")
+	Events.connect("on_boss_take_damage", self, "boss_take_damage")
 
 	Events.emit_signal("add_stream_player", self)
 
@@ -32,9 +34,19 @@ func _ready():
 func update_score(value):
 	score_label.set_text(str(value))
 
+
+func boss_reached():
+	MusicController.play_core_boss()
+
+	level_progress.max_value = 1000
+	level_progress.value = 1000
+
+
 func level_completed():
+	# TODO add victory or lose music depending on the result
 	MusicController.stop_music()
 	game_over.visible = true
+
 
 func _on_Continue_button_down():
 	Events.emit_signal("play_entity_sound", self, Sound.Button)
@@ -50,3 +62,7 @@ func take_damage(current_value):
 
 func group_cleared():
 	level_progress.value += 1
+
+
+func boss_take_damage(value):
+	level_progress.value -= value

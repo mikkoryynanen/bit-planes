@@ -26,10 +26,10 @@ func set_movement(inputVector: Vector2, delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, deacceleration * delta)
 
-	if destroy_out_of_view && has_viewed:
-		if position.x <= 0 || position.x >= screen_size.x + 16:
-			Events.emit_signal("on_enemy_destroyed")
-			queue_free()
+	# if destroy_out_of_view && has_viewed:
+	# 	if position.x <= 0 || position.x >= screen_size.x + 16:
+	# 		Events.emit_signal("on_enemy_destroyed")
+	# 		queue_free()
 
 	if destroy_out_of_view && !has_viewed && position.x > 0:
 		has_viewed = true
