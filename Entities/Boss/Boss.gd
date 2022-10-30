@@ -34,7 +34,7 @@ func _physics_process(delta):
 
 func _on_Hitbox_area_entered(area: Area2D):
 	if health.take_damage(10):
-		Events.emit_signal("on_level_completed")
+		Events.emit_signal("on_level_completed", true)
 		queue_free()
 	else:
 		Events.emit_signal("play_entity_sound", self, Sound.Hit)

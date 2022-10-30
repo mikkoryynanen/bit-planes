@@ -39,6 +39,7 @@ func level_completed():
 
 func _process(delta):
 	if state == COMPLETED:
+		shoot.is_shooting = false;
 		return
 
 	# Shooting
@@ -67,6 +68,7 @@ func _on_Hitbox_area_entered(area: Area2D):
 	if area.get_parent() is Projectile:
 		if health.take_damage(10):
 			Events.emit_signal("on_level_completed")
+			Events.emit_signal("on_level_completed", false)
 			queue_free()
 		else:
 			Events.emit_signal("play_entity_sound", self, Sound.Hit)

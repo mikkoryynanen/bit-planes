@@ -5,6 +5,7 @@ export(Texture) var progress_fill_texture
 onready var score_label: Label = $Core/ScoreLabel
 onready var healthbar: TextureProgress = $Core/Healthbar
 onready var game_over: Control = $GameOver
+onready var game_over_label: Label = $GameOver/GameOverLabel
 
 onready var level_progress: TextureProgress = $Core/LevelProgress
 onready var boss_difficulty_icon: TextureRect = $Core/LevelProgress/BossDifficultyIcon
@@ -42,14 +43,22 @@ func boss_reached():
 	level_progress.value = 1000
 
 
-func level_completed():
+func level_completed(won):
 	# TODO add victory or lose music depending on the result
-	MusicController.stop_music()
+	if won:
+		MusicController.play_core_win()
+		game_over_label.text = "You won!"
+	else:
+		game_over_label.text = "You lost"
+		MusicController.play_core_lost()
+
 	game_over.visible = true
 
 
 func _on_Continue_button_down():
 	Events.emit_signal("play_entity_sound", self, Sound.Button)
+
+	MusicController.stop_music()
 
 	GameData.save()
 	GameData.unlock_next_level()

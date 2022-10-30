@@ -9,7 +9,7 @@ signal on_enemy_path_destroy(path_node)
 signal on_take_damage(current_value)
 signal on_group_cleared()
 
-signal on_level_completed()
+signal on_level_completed(won)
 signal on_boss_reached()
 signal on_boss_take_damage(value)
 

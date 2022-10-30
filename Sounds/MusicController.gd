@@ -3,7 +3,11 @@ extends Node2D
 var music = [
 	preload("res://Sounds/Music/Abstraction _Three_Red_Hearts _Pixel_War_2.wav"),
 	preload("res://Sounds/Music/Abstraction - Three Red Hearts - Deep Blue.wav"),
-	preload("res://Sounds/Music/Abstraction - Three Red Hearts - Out of Time.wav")
+	preload("res://Sounds/Music/Abstraction - Three Red Hearts - Out of Time.wav"),
+	# Lost
+	preload("res://Sounds/Music/Abstraction - Three Red Hearts - Sanctuary.wav"),
+	# Won
+	preload("res://Sounds/Music/Abstraction - Three Red Hearts - Connected.wav")
 ]
 var stream: AudioStreamPlayer
 
@@ -23,8 +27,18 @@ func play_core():
 	stream.set_stream(music[1])
 	stream.play()
 
+
 func play_core_boss():
 	stream.set_stream(music[2])
+	stream.play()
+
+
+func play_core_win():
+	stream.set_stream(music[4])
+	stream.play()
+
+func play_core_lost():
+	stream.set_stream(music[3])
 	stream.play()
 
 func stop_music():
