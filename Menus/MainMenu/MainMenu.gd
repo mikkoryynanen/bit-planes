@@ -8,7 +8,7 @@ func _ready():
 
 func _on_Play_button_up():
 	Events.emit_signal("play_entity_sound", self, Sound.Button)
-	SceneLoader.load_menu_map()
+	SceneLoader.load_core()
 
 
 func _on_Build_button_up():
