@@ -9,10 +9,6 @@ var enemies_count = 0
 var path_index: int = 0
 
 
-func _ready():
-	Events.connect("on_enemy_destroyed", self, "enemy_destroyed")
-
-
 func init(count: int, path_index: int):
 	enemies_count = count
 	self.path_index = path_index
@@ -35,11 +31,7 @@ func _process(delta):
 
 			spawned_enemies_count += 1
 
-
-func enemy_destroyed(entity):
-	if entity == self:
-		enemies_count -= 1
-		if enemies_count <= 0:
-			queue_free()
-
-		entity.queue_free()
+	if spawned_enemies_count >= enemies_count && self.get_child_count() <= 0:
+		Events.emit_signal("on_group_cleared")
+		queue_free()
+				
