@@ -1,12 +1,14 @@
 extends Node2D
 
-var shoot_sounds = []
-var hit_sounds = []
+# var shoot_sounds = []
+# var hit_sounds = []
 var streams = {}
 
 # One off sounds
 var sound_collect = preload("res://Sounds/SFX/Pickup_Coin8.wav")
 var sound_explosion = preload("res://Sounds/SFX/Explosion2.wav")
+var shoot_sound = preload("res://Sounds/SFX/Shoot/Laser_Shoot2 (2).wav")
+var hit_sound = preload("res://Sounds/SFX/Hit/Hit_Hurt2.wav")
 
 var sound_button_press = preload("res://Sounds/SFX/Blips/beep.wav")
 
@@ -14,11 +16,11 @@ enum { Shoot, Hit, Collect, Explosion, Button }
 
 
 func _ready():
-	for sound in get_files_recursively("res://Sounds/SFX/Shoot", "wav"):
-		shoot_sounds.append(load(sound))
+	# for sound in get_files_recursively("res://Sounds/SFX/Shoot", "wav"):
+	# 	shoot_sounds.append(load(sound))
 
-	for sound in get_files_recursively("res://Sounds/SFX/Hit", "wav"):
-		hit_sounds.append(load(sound))
+	# for sound in get_files_recursively("res://Sounds/SFX/Hit", "wav"):
+	# 	hit_sounds.append(load(sound))
 
 	Events.connect("add_stream_player", self, "add_stream_player")
 	Events.connect("play_entity_sound", self, "play_entity_sound")
@@ -35,9 +37,9 @@ func play_entity_sound(entity: Object, type):
 	if stream != null:
 		match type:
 			Sound.Shoot:
-				set_stream(stream, shoot_sounds[0])
+				set_stream(stream, shoot_sound)
 			Sound.Hit:
-				set_stream(stream, hit_sounds[0])
+				set_stream(stream, hit_sound)
 			Sound.Collect:
 				set_stream(stream, sound_collect)
 			Sound.Explosion:
