@@ -6,27 +6,33 @@ enum SlotType { Weapon, Wings, Core, Engine }
 
 enum ValueType { Damage, Movement, Energy, FireRate }
 
-var game_data = {}
+# var game_data = {}
+var items = []
+var player
+var attached_items
+# These are saved once level is completed
+# Save these locally here until that happens
+var collected_items = 0
+
 var current_level_index = 0
 
 
+
 func _ready():
-	# save()
-	game_data = DataLoader.load_file(FILE_NAME)
-
-
-func save():
-	DataLoader.save_file(FILE_NAME, to_json(game_data))
+	items = DataLoader.get_items()
+	player = DataLoader.get_player()
+	attached_items = DataLoader.get_attached_items(1)
 
 
 # Level =========================================================
 func load_unlocked_levels():
-	return game_data.unlocked_levels
+	# TODO Map menu is disabled
+	pass
 
 
 func unlock_next_level():
-	game_data.unlocked_levels.append(len(game_data.unlocked_levels))
-	save()
+	# TODO Map menu is disabled
+	pass
 
 
 # ===============================================================
@@ -34,41 +40,44 @@ func unlock_next_level():
 
 # Stats =========================================================
 func load_player_stats():
-	for attached_item in game_data.attached_items:
-		for value in attached_item.values:
-			# TODO use match statement here
-			# did not work i last used it tho
-			if value.type == ValueType.Damage:
-				PlayerStats.damage += int(value.value)
-			elif value.type == ValueType.Movement:
-				PlayerStats.movement += int(value.value)
-			elif value.type == ValueType.FireRate:
-				PlayerStats.fire_rate = float(value.value)
+	if attached_items != null:
+		for attached_item in attached_items:
+			if attached_item["Type"] == ValueType.Damage:
+				PlayerStats.damage += int(attached_item["Value"])
+			elif attached_item["Type"]== ValueType.Movement:
+				PlayerStats.movement += int(attached_item["Value"])
+			elif attached_item["Type"] == ValueType.FireRate:
+				PlayerStats.fire_rate = float(attached_item["Value"])
 
 
 # ===============================================================
 
 
 # Items =========================================================
+func save_collected_items():
+	DataLoader.add_collected_items(collected_items)
+
+
 func add_collected_items(added_collectables_count):
-	game_data.collectables += added_collectables_count
+	collected_items += added_collectables_count
 
 
-func purchase_item(item_data) -> bool:
-	var purchased = false
-	for item in game_data.items:
-		if item.id == item_data.id && item.is_owned == false:
-			if game_data.collectables >= item.cost:
-				game_data.collectables -= item.cost
-				item.is_owned = true
+# func purchase_item(item_data):
+# 	var purchased = false
+# 	for item in items:
+# 		if item.id == item_data.id && item.is_owned == false:
+# 			if player.collectables >= item.cost:
+# 				player.collectables -= item.cost
+# 				item.is_owned = true
 
-				# TODO Should we install the item after purchasing?
+# 				# TODO Should we install the item after purchasing?
 
-				save()
-				purchased = true
-				break
+# 				# DataLoader.add_collected_items(item.
+				
+# 				purchased = true
+# 				break
 
-	return purchased
+# 	return purchased
 
 
 func attach_item(item_data, slot_id: int) -> bool:
@@ -80,9 +89,9 @@ func attach_item(item_data, slot_id: int) -> bool:
 		if is_item_slot_occupied(slot_id):
 			unattach_item(slot_id)
 
-		game_data.attached_items.append(item_data)
+		# game_data.attached_items.append(item_data)
 
-		save()
+		# save()
 		return true
 	else:
 		printerr("Could not attach item. Item not owned")
@@ -90,32 +99,36 @@ func attach_item(item_data, slot_id: int) -> bool:
 
 
 func unattach_item(slot_id: int):
-	for i in len(game_data.attached_items):
-		if game_data.attached_items[i].slot == slot_id:
-			game_data.attached_items.remove(i)
-			print(str("Unattached item from slot ", slot_id))
+	pass
+	# for i in len(game_data.attached_items):
+	# 	if game_data.attached_items[i].slot == slot_id:
+	# 		game_data.attached_items.remove(i)
+	# 		print(str("Unattached item from slot ", slot_id))
 
 
 func is_item_slot_occupied(slot) -> bool:
-	for attached_item in game_data.attached_items:
-		if attached_item.slot == slot:
-			return true
-
 	return false
+	# for attached_item in game_data.attached_items:
+	# 	if attached_item.slot == slot:
+	# 		return true
+
+	# return false
 
 
 func is_item_attached(item_id: int) -> bool:
-	for attached_item in game_data.attached_items:
-		if attached_item.id == item_id:
-			return true
-
 	return false
+	# for attached_item in game_data.attached_items:
+	# 	if attached_item.id == item_id:
+	# 		return true
+
+	# return false
 
 
 func is_item_owned(item_id: int) -> bool:
-	for item in game_data.items:
-		if item.id == item_id && item.is_owned == true:
-			return true
-
 	return false
+	# for item in game_data.items:
+	# 	if item.id == item_id && item.is_owned == true:
+	# 		return true
+
+	# return false
 # ========================================================================

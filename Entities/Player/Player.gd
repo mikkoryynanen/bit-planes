@@ -28,8 +28,8 @@ func _ready():
 	health.value = PlayerStats.health
 
 	# attached item visuals
-	for item in GameData.game_data.attached_items:
-		$PlayerVisual.set_slot_visual(item.slot, item.sprite_frame)
+	# for item in GameData.game_data.attached_items:
+		# $PlayerVisual.set_slot_visual(item.slot, item.sprite_frame)
 
 
 func level_completed():

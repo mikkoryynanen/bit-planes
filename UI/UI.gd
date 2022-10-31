@@ -60,7 +60,7 @@ func _on_Continue_button_down():
 
 	MusicController.stop_music()
 
-	GameData.save()
+	GameData.save_collected_items()
 	GameData.unlock_next_level()
 	SceneLoader.load_menu_main()
 

@@ -1,1 +1,93 @@
-{"attached_items":[{"cost":10,"iconSrc":"res://Resources/Icons/Weapon.png","id":0,"is_owned":true,"name":"Basic Weapon","slot":0,"sprite_frame":4,"values":[{"type":0,"value":"10"},{"type":3,"value":"0.1"}]}],"collectables":19260,"items":[{"cost":10,"iconSrc":"res://Resources/Icons/Weapon.png","id":0,"is_owned":true,"name":"Basic Weapon","slot":0,"sprite_frame":4,"values":[{"type":0,"value":"10"},{"type":2,"value":"10"}]},{"cost":10,"iconSrc":"res://Resources/Icons/Weapon.png","id":1,"is_owned":true,"name":"Basic Weapon","slot":0,"sprite_frame":3,"values":[{"type":0,"value":"30"},{"type":2,"value":"30"}]},{"cost":10,"iconSrc":"res://Resources/Icons/Wings.png","id":1,"is_owned":false,"name":"Basic Wing","slot":1,"sprite_frame":1,"values":[{"type":0,"value":"30"},{"type":2,"value":"30"}]}],"slots":[{"iconSrc":"res://Resources/Icons/Weapon.png","name":"Weapon","slot":0},{"iconSrc":"res://Resources/Icons/Wings.png","name":"Wings","slot":1},{"iconSrc":"res://Resources/Icons/Core.png","name":"Core","slot":2},{"iconSrc":"res://Resources/Icons/Engine.png","name":"Engines","slot":3}],"unlocked_levels":[0,1,2,3,4,5]}
+{
+  "attached_items": [
+    {
+      "cost": 10,
+      "iconSrc": "res://Resources/Icons/Weapon.png",
+      "id": 0,
+      "is_owned": true,
+      "name": "Basic Weapon",
+      "slot": 0,
+      "sprite_frame": 4,
+      "values": [
+        { "type": 0, "value": "10" },
+        { "type": 3, "value": "0.1" }
+      ]
+    },
+    {
+      "cost": 10,
+      "iconSrc": "res://Resources/Icons/Wings.png",
+      "id": 1,
+      "is_owned": false,
+      "name": "Basic Wing",
+      "slot": 1,
+      "sprite_frame": 1,
+      "values": [
+        { "type": 0, "value": "30" },
+        { "type": 2, "value": "30" }
+      ]
+    }
+  ],
+  "collectables": 23040,
+  "items": [
+    {
+      "cost": 10,
+      "iconSrc": "res://Resources/Icons/Weapon.png",
+      "id": 0,
+      "is_owned": true,
+      "name": "Basic Weapon",
+      "slot": 0,
+      "sprite_frame": 4,
+      "values": [
+        { "type": 0, "value": "10" },
+        { "type": 2, "value": "10" }
+      ]
+    },
+    {
+      "cost": 10,
+      "iconSrc": "res://Resources/Icons/Weapon.png",
+      "id": 1,
+      "is_owned": true,
+      "name": "Basic Weapon",
+      "slot": 0,
+      "sprite_frame": 3,
+      "values": [
+        { "type": 0, "value": "30" },
+        { "type": 2, "value": "30" }
+      ]
+    },
+    {
+      "cost": 10,
+      "iconSrc": "res://Resources/Icons/Wings.png",
+      "id": 1,
+      "is_owned": false,
+      "name": "Basic Wing",
+      "slot": 1,
+      "sprite_frame": 1,
+      "values": [
+        { "type": 0, "value": "30" },
+        { "type": 2, "value": "30" }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "iconSrc": "res://Resources/Icons/Weapon.png",
+      "name": "Weapon",
+      "slot": 0
+    },
+    {
+      "iconSrc": "res://Resources/Icons/Wings.png",
+      "name": "Wings",
+      "slot": 1
+    },
+    { "iconSrc": "res://Resources/Icons/Core.png", "name": "Core", "slot": 2 },
+    {
+      "iconSrc": "res://Resources/Icons/Engine.png",
+      "name": "Engines",
+      "slot": 3
+    }
+  ],
+  "unlocked_levels": [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17
+  ]
+}
