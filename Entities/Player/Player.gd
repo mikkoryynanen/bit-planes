@@ -67,7 +67,6 @@ func _physics_process(delta):
 func _on_Hitbox_area_entered(area: Area2D):
 	if area.get_parent() is Projectile:
 		if health.take_damage(10):
-			Events.emit_signal("on_level_completed")
 			Events.emit_signal("on_level_completed", false)
 			queue_free()
 		else:
