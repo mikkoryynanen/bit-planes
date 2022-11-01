@@ -15,6 +15,7 @@ var db_name = "res://Data/Database.db"
 # Table anmes
 const players_table = "Player"
 const items_table = "Items"
+const slot_table = "Slot"
 const item_values_table = "ItemValues"
 const unlocked_levels_table = "PlayerUnlockedLevels"
 const attached_items_table = "PlayerAttachedItems"
@@ -103,6 +104,7 @@ func add_collected_items(count: int):
 
 	print("added collected item sql sent")
 
+
 # ==========================================================================
 
 
@@ -137,6 +139,31 @@ func load_items_for_slot(slot: int):
 			slot
 		)
 	)
+	db.close_db()
+
+	return db.query_result
+
+
+func get_item_stats(item_id: int):
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(
+		str(
+			"SELECT * FROM ",
+			item_values_table,	
+			" WHERE ItemID = ",
+			item_id
+		)
+	)
+	db.close_db()
+
+	return db.query_result
+
+
+func get_slots():
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(str("SELECT * FROM ", slot_table))
 	db.close_db()
 
 	return db.query_result
@@ -178,6 +205,7 @@ func load_items_for_slot(slot: int):
 
 # const FILE_PASS = "1234"
 
+
 # # Loads file with given file path
 func load_file(file_path: String):
 	var file = File.new()
@@ -199,10 +227,10 @@ func load_file(file_path: String):
 		# else:
 		# 	printerr(str(file_path, " file is corrupted! data type is: ", typeof(data)))
 	else:
-
 		print("No save data found. Created new file")
 
 		return null
+
 
 func save_file(file_path: String, file_contents: String):
 	var file = File.new()

@@ -10,9 +10,10 @@ enum ValueType { Damage, Movement, Energy, FireRate }
 var items = []
 var player
 var attached_items
+var slots = []
 # These are saved once level is completed
 # Save these locally here until that happens
-var collected_items = 0
+var collected_items: int = 0
 
 var current_level_index = 0
 
@@ -22,6 +23,10 @@ func _ready():
 	items = DataLoader.get_items()
 	player = DataLoader.get_player()
 	attached_items = DataLoader.get_attached_items(1)
+	slots = DataLoader.get_slots()
+
+	collected_items = int(player["Collectables"])
+	
 
 
 # Level =========================================================
@@ -58,7 +63,7 @@ func save_collected_items():
 	DataLoader.add_collected_items(collected_items)
 
 
-func add_collected_items(added_collectables_count):
+func add_collected_items(added_collectables_count: int):
 	collected_items += added_collectables_count
 
 
