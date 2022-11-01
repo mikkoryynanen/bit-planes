@@ -11,7 +11,55 @@ var enemy_group_data = {
 		  "spawn_time": 1,
 		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
 		  "path": 0
-		}
+		},
+				{
+		  "enemies_count": 3,
+		  "spawn_time": 8,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+				{
+		  "enemies_count": 3,
+		  "spawn_time": 16,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+				{
+		  "enemies_count": 3,
+		  "spawn_time": 14,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+						{
+		  "enemies_count": 3,
+		  "spawn_time": 22,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+						{
+		  "enemies_count": 3,
+		  "spawn_time": 30,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+						{
+		  "enemies_count": 3,
+		  "spawn_time": 14,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+								{
+		  "enemies_count": 3,
+		  "spawn_time": 22,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
+								{
+		  "enemies_count": 3,
+		  "spawn_time": 30,
+		  "enemy_scene": "res://Entities/Enemy/Enemy.tscn",
+		  "path": 0
+		},
 	  ]
 	},
 	{

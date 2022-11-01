@@ -45,7 +45,7 @@ func _process(delta):
 func spawn_enemy_groups(count: int, path_index: int):
 	var enemy_group = EnemyGroupScene.instance()
 	self.add_child(enemy_group)
-	enemy_group.init(count, path_index)
+	enemy_group.init(count, path_index, current_group)
 
 
 func check_for_enemies(entity):

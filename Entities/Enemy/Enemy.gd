@@ -5,7 +5,8 @@ class_name Enemy
 export var collectablesCount = 3
 
 var direction: Vector2
-var group: EnemyGroup = null
+# Increases the health of the eneimes per level
+var health_multiplier: float = 0.25
 
 onready var animation_player = $HitFlashPlayer
 onready var shoot: Shoot = $Shoot
@@ -14,10 +15,9 @@ onready var health := $Health
 const Collectable = preload("res://Entities/Collectable/Collectable.tscn")
 
 
-
 # This is set from the enemy group manager
-func init(_group: EnemyGroup):
-	group = _group
+func init(multiplier: float):
+	health_multiplier = multiplier
 
 
 func _ready():
@@ -30,7 +30,7 @@ func _ready():
 	shoot.shoot_direction = Vector2.DOWN
 	shoot.proejctile_speed = 30
 
-	health.value = PlayerStats.health
+	health.value = 10 * (1 + health_multiplier)
 
 
 func _on_Hitbox_area_entered(area: Area2D):
