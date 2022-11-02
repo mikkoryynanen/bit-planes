@@ -73,18 +73,18 @@
     {
       "iconSrc": "res://Resources/Icons/Weapon.png",
       "name": "Weapon",
-      "slot": 0
+      "slot": 1
     },
     {
       "iconSrc": "res://Resources/Icons/Wings.png",
       "name": "Wings",
-      "slot": 1
+      "slot": 2
     },
-    { "iconSrc": "res://Resources/Icons/Core.png", "name": "Core", "slot": 2 },
+    { "iconSrc": "res://Resources/Icons/Core.png", "name": "Core", "slot": 3 },
     {
       "iconSrc": "res://Resources/Icons/Engine.png",
       "name": "Engines",
-      "slot": 3
+      "slot": 4
     }
   ],
   "unlocked_levels": [

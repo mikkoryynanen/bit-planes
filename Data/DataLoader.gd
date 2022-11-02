@@ -5,7 +5,7 @@ extends Node2D
 const SQLite = preload("res://addons/godot-sqlite/bin/gdsqlite.gdns")
 
 enum VerbosityLevel { QUIET = 0, NORMAL = 1, VERBOSE = 2, VERY_VERBOSE = 3 }
-const verbosity_level: int = VerbosityLevel.VERBOSE
+const verbosity_level: int = VerbosityLevel.QUIET
 
 # Path to DB
 
@@ -14,8 +14,12 @@ var db_name = "res://Data/Database.db"
 
 # Table anmes
 const players_table = "Player"
+const player_items_table = "PlayerItems"
 const items_table = "Items"
 const slot_table = "Slot"
+const player_stat_table = "PlayerStats"
+const stat_table = "Stats"
+const stat_levels_table = "StatLevels"
 const item_values_table = "ItemValues"
 const unlocked_levels_table = "PlayerUnlockedLevels"
 const attached_items_table = "PlayerAttachedItems"
@@ -78,6 +82,15 @@ func get_attached_items(player_id: int):
 	return db.query_result
 
 
+func get_owned_items(player_id: int):
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(str("SELECT ItemID FROM PlayerItems WHERE PlayerID = ", player_id))
+	db.close_db()
+
+	return db.query_result
+
+
 func get_unlocked_levels(player_id: int):
 	var db = create_SQLite(true)
 	db.open_db()
@@ -102,7 +115,21 @@ func add_collected_items(count: int):
 	db.query(str("UPDATE Player SET Collectables = Player.Collectables + ", count))
 	db.close_db()
 
-	print("added collected item sql sent")
+
+func reduce_collected_items(count: int):
+	var db = create_SQLite()
+	db.open_db()
+	db.query(str("UPDATE Player SET Collectables = Player.Collectables - ", count))
+	db.close_db()
+
+
+func add_item(item_id: int, player_id: int):
+	var db = create_SQLite()
+	db.open_db()
+	db.query(
+		str("INSERT INTO PlayerItems(PlayerID, ItemID) VALUES(", player_id, ", ", item_id, ")")
+	)
+	db.close_db()
 
 
 # ==========================================================================
@@ -147,14 +174,7 @@ func load_items_for_slot(slot: int):
 func get_item_stats(item_id: int):
 	var db = create_SQLite(true)
 	db.open_db()
-	db.query(
-		str(
-			"SELECT * FROM ",
-			item_values_table,	
-			" WHERE ItemID = ",
-			item_id
-		)
-	)
+	db.query(str("SELECT * FROM ", item_values_table, " WHERE ItemID = ", item_id))
 	db.close_db()
 
 	return db.query_result
@@ -164,6 +184,101 @@ func get_slots():
 	var db = create_SQLite(true)
 	db.open_db()
 	db.query(str("SELECT * FROM ", slot_table))
+	db.close_db()
+
+	return db.query_result
+
+
+# ==========================================================================
+
+
+# Stats ====================================================================
+func get_stats():
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(str("SELECT * FROM ", stat_table))
+	db.close_db()
+
+	return db.query_result
+
+
+func get_player_stats():
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(
+		str(
+			"SELECT PlayerStats.Level, Stats.ID, Stats.Name FROM ",
+			player_stat_table,
+			" LEFT JOIN Stats on PlayerStats.StatID = Stats.ID"
+		)
+	)
+	db.close_db()
+
+	return db.query_result
+
+
+func get_stat_level(stat_id: int, level: int):
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(
+		str(
+			"SELECT StatLevels.Value FROM ",
+			stat_levels_table,
+			" WHERE StatLevels.Level = ",
+			level,
+			" AND StatLevels.StatID = ",
+			stat_id
+		)
+	)
+	db.close_db()
+
+	return db.query_result[0]
+
+
+func get_stat_max_level(stat_id: int):
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(
+		str(
+			"SELECT count(*) as maxLevels FROM ",
+			stat_levels_table,
+			" WHERE StatLevels.StatID = ",
+			stat_id
+		)
+	)
+	db.close_db()
+
+	return db.query_result[0]
+
+
+func get_stat_levels(stat_id: int):
+	var db = create_SQLite(true)
+	db.open_db()
+	db.query(str("SELECT Level, Value, Cost FROM StatLevels WHERE StatID = ", stat_id))
+	db.close_db()
+
+	return db.query_result
+
+
+func change_stat(increase: bool, player_id: int, stat_id: int):
+	var update_value = ""
+	if increase:
+		update_value = str("+ ", 1)
+	else:
+		update_value = str("- ", 1)
+
+	var db = create_SQLite()
+	db.open_db()
+	db.query(
+		str(
+			"UPDATE PlayerStats SET Level = Level ",
+			update_value,
+			" WHERE PlayerID = ",
+			player_id,
+			" AND StatID = ",
+			stat_id
+		)
+	)
 	db.close_db()
 
 	return db.query_result

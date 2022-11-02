@@ -37,3 +37,9 @@ margin_top = -8.0
 margin_right = 8.0
 margin_bottom = 8.0
 texture = ExtResource( 3 )
+
+[node name="NotOwnedOverlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.498039 )

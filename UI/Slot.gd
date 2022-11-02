@@ -5,9 +5,10 @@ extends Control
 # onready var icon = $Icon
 
 
-func set_data(data, is_equipped):
-	$Icon.texture = load(data.iconSrc)
+func set_data(iconSrc: String, is_equipped: bool, is_owned: bool = false):
+	$Icon.texture = load(iconSrc)
 	$AttachedIcon.visible = is_equipped
+	$NotOwnedOverlay.visible = is_owned
 	set_on_select(false)
 
 

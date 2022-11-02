@@ -15,6 +15,10 @@ signal on_boss_take_damage(value)
 
 signal on_collected()
 
+# Stat Menu
+signal increase_stat(stat)
+signal reduce_stat(stat)
+signal on_stats_menu_currency_update()
 
 # BuildMenu
 signal on_item_attached(item_data, slot_id)

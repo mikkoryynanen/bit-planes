@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/Stats/Stats.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Back_Up.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Player.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Back_Down.png" type="Texture" id=5]
+
+[node name="Stats" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 18.0
+margin_right = -10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeftContainer" type="Control" parent="HBoxContainer"]
+margin_right = 153.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Player" type="TextureRect" parent="HBoxContainer/LeftContainer"]
+margin_top = 65.0
+margin_right = 154.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="StatsList" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 157.0
+margin_right = 310.0
+margin_bottom = 162.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CurrencyLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "c: 999999"
+align = 2
+uppercase = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 5 )
+
+[connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]
