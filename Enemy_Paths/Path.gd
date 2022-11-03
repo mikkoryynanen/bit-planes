@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	if can_move:
 		if path_follow.unit_offset >= 1:
-			Events.emit_signal("on_enemy_destroyed", self)
+			Events.emit_signal("on_level_completed", false)
 			queue_free()
 		else:
 			path_follow.offset += speed * delta
