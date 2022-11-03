@@ -23,7 +23,7 @@ func _ready():
 		stats_list.add_child(section)
 		var stat_max_level = DataLoader.get_stat_max_level(stat.ID)
 		var stat_levels = DataLoader.get_stat_levels(stat.ID)
-		section.init(stat.ID, stat.Name, int(stat.Level), int(stat_max_level.maxLevels), stat_levels)
+		section.init(stat.ID, stat.Name, int(stat.Level), int(stat_max_level.maxLevels) - 1, stat_levels)
 
 	highlight_section()
 
@@ -48,6 +48,9 @@ func _process(delta):
 		reduce_stat()
 	if Input.is_action_just_pressed("ui_right"):
 		increase_stat()
+
+	if Input.is_action_just_pressed("ui_cancel"):
+		_on_TextureButton_button_up()
 
 # func _input(event):
 	# if(event is InputEventKey):

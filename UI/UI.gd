@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var is_game_over = false
+
 export(Texture) var progress_fill_texture
 
 onready var score_label: Label = $Core/ScoreLabel
@@ -32,6 +34,12 @@ func _ready():
 	level_progress.value = 0
 
 
+func _process(delta):
+	if is_game_over:
+		if Input.is_action_just_pressed("shoot"):
+			_on_Continue_button_down()
+
+
 func update_score(value):
 	score_label.set_text(str(value))
 
@@ -53,6 +61,7 @@ func level_completed(won):
 		MusicController.play_core_lost()
 
 	game_over.visible = true
+	is_game_over = true
 
 
 func _on_Continue_button_down():

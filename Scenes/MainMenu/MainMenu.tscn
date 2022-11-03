@@ -64,6 +64,7 @@ size_flags_vertical = 4
 theme = SubResource( 3 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Play"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -81,7 +82,7 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="Build" type="TextureButton" parent="MarginContainer/ButtonContainer"]
+[node name="Stats" type="TextureButton" parent="MarginContainer/ButtonContainer"]
 margin_left = 113.0
 margin_top = 64.0
 margin_right = 177.0
@@ -91,8 +92,9 @@ size_flags_vertical = 4
 theme = SubResource( 3 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Build"]
+[node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Stats"]
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -103,7 +105,7 @@ margin_bottom = -10.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Build"
+text = "Stats"
 align = 1
 valign = 1
 uppercase = true
@@ -137,4 +139,4 @@ valign = 1
 uppercase = true
 
 [connection signal="button_up" from="MarginContainer/ButtonContainer/Play" to="." method="_on_Play_button_up"]
-[connection signal="button_up" from="MarginContainer/ButtonContainer/Build" to="." method="_on_Build_button_up"]
+[connection signal="button_up" from="MarginContainer/ButtonContainer/Stats" to="." method="_on_Stats_button_up"]
