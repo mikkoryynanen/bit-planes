@@ -32,7 +32,7 @@ func _ready():
 		# $PlayerVisual.set_slot_visual(item.slot, item.sprite_frame)
 
 
-func level_completed():
+func level_completed(won):
 	state = COMPLETED
 	set_movement(Vector2.ZERO, 0)
 
