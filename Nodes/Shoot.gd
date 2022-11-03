@@ -22,7 +22,7 @@ func _process(delta):
 	if is_shooting:
 		if shootTimer <= 0:
 			var projectile = Projectile.instance()
-			get_parent().get_parent().add_child(projectile)
+			get_tree().get_root().get_node("World").call_deferred("add_child", projectile)
 
 			projectile.get_node("Hitbox").collision_layer = projectile_collision_layers
 			projectile.get_node("Hitbox").collision_mask = projectile_collision_masks
