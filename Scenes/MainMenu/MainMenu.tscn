@@ -42,7 +42,7 @@ anchor_right = 1.0
 margin_bottom = 26.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 2 )
-text = "Bit Planes"
+text = "Bits & Spaceships"
 align = 1
 uppercase = true
 
