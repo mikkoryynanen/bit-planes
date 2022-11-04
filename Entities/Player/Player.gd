@@ -74,3 +74,4 @@ func _on_Hitbox_area_entered(area: Area2D):
 			animation_player.play("Flash")
 
 		Events.emit_signal("on_take_damage", health.value)
+		Events.emit_signal("on_camera_shake")

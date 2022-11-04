@@ -15,6 +15,8 @@ signal on_boss_take_damage(value)
 
 signal on_collected()
 
+signal on_camera_shake()
+
 # Stat Menu
 signal increase_stat(stat)
 signal reduce_stat(stat)
