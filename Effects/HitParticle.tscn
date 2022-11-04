@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Effects/ParticleDestroyer.gd" type="Script" id=1]
 
 [node name="HitParticle" type="CPUParticles2D"]
 emitting = false
@@ -17,3 +19,4 @@ initial_velocity_random = 0.25
 damping = 100.0
 scale_amount = 1.2
 scale_amount_random = 1.0
+script = ExtResource( 1 )
