@@ -28,7 +28,7 @@ func _ready():
 	shoot.barrel_count = 0
 	shoot.is_shooting = true
 	shoot.shoot_direction = Vector2.DOWN
-	shoot.proejctile_speed = 30
+	shoot.projectile_speed = 30
 
 	health.value = 10 * (1 + health_multiplier)
 

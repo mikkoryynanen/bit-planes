@@ -3,7 +3,8 @@ extends Node2D
 
 export(int, LAYERS_2D_PHYSICS) var projectile_collision_layers;
 export(int, LAYERS_2D_PHYSICS) var projectile_collision_masks;
-export var proejctile_speed = 250
+export var projectile_speed = 250
+export var projectile_lifetime = 10
 
 var shoot_interval: float = 0.4
 var barrel_count: int = 4
@@ -27,7 +28,8 @@ func _process(delta):
 			projectile.get_node("Hitbox").collision_layer = projectile_collision_layers
 			projectile.get_node("Hitbox").collision_mask = projectile_collision_masks
 
-			projectile.speed = proejctile_speed
+			projectile.speed = projectile_speed
+			projectile.lifetime = projectile_lifetime
 
 			projectile.global_position = (
 				self.global_position
