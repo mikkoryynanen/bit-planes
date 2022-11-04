@@ -3,22 +3,13 @@ extends Moveable
 var moved_time: float = 0
 
 onready var health = $Health
-onready var shoot: Shoot = $Shoot
 
 
 func _ready():
 	Events.emit_signal("add_stream_player", self)
 
-	shoot.shoot_interval = 2
-	# Set the barrel_count based on fire rate
-	shoot.barrel_count = 0
-	shoot.is_shooting = true
-	shoot.shoot_direction = Vector2.DOWN
-	shoot.proejctile_speed = 15
-
 	health.value = 1000
 	self.max_speed = 35
-
 
 func _physics_process(delta):
 	moved_time += delta
@@ -29,7 +20,6 @@ func _physics_process(delta):
 			moved_time = 0
 	else:
 		set_movement(Vector2.LEFT, delta)
-		
 
 
 func _on_Hitbox_area_entered(area: Area2D):
