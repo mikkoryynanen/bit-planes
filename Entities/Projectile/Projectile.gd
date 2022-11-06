@@ -9,6 +9,9 @@ var timer: float = 0.0
 const HitParticle = preload("res://Effects/HitParticle.tscn")
 
 
+func _ready():
+	Events.connect("on_level_completed", self, "level_complete")
+
 
 func _physics_process(delta):
 	move_and_collide(direction * delta * speed)
@@ -27,6 +30,9 @@ func _on_Hitbox_area_entered(area: Area2D):
 			
 	destroy()
 
+
+func level_complete(won):
+	destroy()
 
 func destroy():
 	queue_free()
