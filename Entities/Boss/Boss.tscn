@@ -56,7 +56,7 @@ script = ExtResource( 5 )
 
 [node name="PatternShooter" parent="." instance=ExtResource( 8 )]
 rotate_sped = 250
-radius = 50
+radius = 25
 shoot_wait_time = 0.35
 spawn_point_count = 6
 projectile_speed = 50
