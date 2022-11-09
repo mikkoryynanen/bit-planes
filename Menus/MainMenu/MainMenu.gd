@@ -13,10 +13,10 @@ var selected_section_index = 0
 
 func _ready():
 	Events.emit_signal("add_stream_player", self)
-	MusicController.play_menu()
-
+	
 	yield(get_tree().create_timer(0.2), "timeout")
-
+	
+	MusicController.play_menu()
 	buttons[selected_section_index].grab_focus()
 
 
