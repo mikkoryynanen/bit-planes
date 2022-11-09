@@ -34,7 +34,7 @@ func _physics_process(delta):
 
 
 func _on_Hitbox_area_entered(area: Area2D):
-	if health.take_damage(10):
+	if health.take_damage(PlayerStats.damage):
 		Events.emit_signal("on_level_completed", true)
 		queue_free()
 	else:
