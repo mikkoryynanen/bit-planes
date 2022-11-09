@@ -3,7 +3,7 @@ extends Camera2D
 var shake_amount = 1.0
 var shake_time = 0.25
 
-var elapsed_time = 0
+var elapsed_time =  shake_time
 var is_shaking = false
 
 
