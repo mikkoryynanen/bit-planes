@@ -6,7 +6,7 @@ extends Node2D
 # const base_energy: int = 0
 # const base_fire_rate: float = 0.75
 
-var health: int = 100
+var health: int = 75
 var movement: int = 0
 var damage: int = 5
 var energy: int = 0
