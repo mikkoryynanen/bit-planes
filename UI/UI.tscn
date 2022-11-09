@@ -24,7 +24,7 @@ rect_pivot_offset = Vector2( -82, -35 )
 
 [node name="ScoreLabel" type="Label" parent="Core"]
 anchor_right = 1.0
-margin_bottom = 25.0
+margin_bottom = 15.0
 theme = ExtResource( 2 )
 text = "9999999"
 align = 2
