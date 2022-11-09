@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Fonts/MenuDynamicFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://Menus/MainMenu/MainMenu.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Button_Up.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Button_Down.png" type="Texture" id=5]
+[ext_resource path="res://Resources/ButtonSelect.png" type="Texture" id=6]
+[ext_resource path="res://Resources/ButtonUp.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Resources/Fonts/PublicPixel-z84yD.ttf"
@@ -55,25 +57,24 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="Play" type="TextureButton" parent="MarginContainer/ButtonContainer"]
-margin_left = 113.0
+margin_left = 114.0
 margin_top = 28.0
-margin_right = 177.0
+margin_right = 176.0
 margin_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_focused = ExtResource( 5 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Play"]
-self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 1.0
-margin_right = -5.0
-margin_bottom = -10.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -83,25 +84,24 @@ valign = 1
 uppercase = true
 
 [node name="Stats" type="TextureButton" parent="MarginContainer/ButtonContainer"]
-margin_left = 113.0
+margin_left = 114.0
 margin_top = 64.0
-margin_right = 177.0
+margin_right = 176.0
 margin_bottom = 96.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource( 3 )
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 5 )
-texture_focused = ExtResource( 5 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="MarginContainer/ButtonContainer/Stats"]
-self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 1.0
-margin_right = -5.0
-margin_bottom = -10.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
