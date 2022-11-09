@@ -232,7 +232,9 @@ func get_stat_level(stat_id: int, level: int):
 	)
 	db.close_db()
 
-	return db.query_result[0]
+	if db.query_result != []:
+		return db.query_result[0]
+	return db.query_result
 
 
 func get_stat_max_level(stat_id: int):
