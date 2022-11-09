@@ -29,6 +29,9 @@ func _physics_process(delta):
 	else:
 		set_movement(Vector2.LEFT, delta)
 
+	# Increase speed over time
+	pattern_shooter.shoot_wait_time -= clamp(pattern_shooter.shoot_wait_time, 0.05, 0.0045) * delta
+
 
 func _on_Hitbox_area_entered(area: Area2D):
 	if health.take_damage(10):
