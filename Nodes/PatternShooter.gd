@@ -10,6 +10,7 @@ export var projectile_speed = 250
 export(int, LAYERS_2D_PHYSICS) var projectile_collision_layers;
 export(int, LAYERS_2D_PHYSICS) var projectile_collision_masks;
 
+var can_shoot: bool = true
 var timer = 0.0
 
 const Projectile = preload("res://Entities/Projectile/PatternProjectile.tscn")
@@ -30,21 +31,22 @@ func _ready():
 func _process(delta):
 	rotator.rotation_degrees += fmod(rotate_sped * delta, 360)
 
-	timer += delta
-	if timer >= shoot_wait_time: 
-		for r in rotator.get_children():
-			var projectile = Projectile.instance()
-			get_tree().root.add_child(projectile)
-			projectile.position = r.global_position
-			projectile.rotation = r.global_rotation
+	if can_shoot:
+		timer += delta
+		if timer >= shoot_wait_time: 
+			for r in rotator.get_children():
+				var projectile = Projectile.instance()
+				get_tree().root.add_child(projectile)
+				projectile.position = r.global_position
+				projectile.rotation = r.global_rotation
 
-			var dir = Vector2.RIGHT.rotated(r.global_rotation)
-			projectile.direction = dir
+				var dir = Vector2.RIGHT.rotated(r.global_rotation)
+				projectile.direction = dir
 
-			projectile.speed = projectile_speed
-			projectile.lifetime = projectile_lifetime
+				projectile.speed = projectile_speed
+				projectile.lifetime = projectile_lifetime
 
-			projectile.get_node("Hitbox").collision_layer = projectile_collision_layers
-			projectile.get_node("Hitbox").collision_mask = projectile_collision_masks
+				projectile.get_node("Hitbox").collision_layer = projectile_collision_layers
+				projectile.get_node("Hitbox").collision_mask = projectile_collision_masks
 
-		timer = 0
+			timer = 0

@@ -1,8 +1,11 @@
 extends Moveable
 
+export(float) var shoot_pause_time = 1.0
+
 var moved_time: float = 0
 
 onready var health = $Health
+onready var pattern_shooter = $PatternShooter
 
 
 func _ready():
@@ -11,10 +14,15 @@ func _ready():
 	health.value = 1000
 	self.max_speed = 35
 
+
 func _physics_process(delta):
 	moved_time += delta
 	if moved_time > 2:
 		set_movement(Vector2.RIGHT, delta)
+		pattern_shooter.can_shoot = false
+
+		if moved_time > 3:
+			pattern_shooter.can_shoot = true
 
 		if moved_time > 4:
 			moved_time = 0

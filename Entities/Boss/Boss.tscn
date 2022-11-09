@@ -50,13 +50,14 @@ tracks/0/keys = {
 
 [node name="Boss" type="KinematicBody2D"]
 material = SubResource( 1 )
+position = Vector2( 160, 60 )
 script = ExtResource( 5 )
 
 [node name="Health" parent="." instance=ExtResource( 6 )]
 
 [node name="PatternShooter" parent="." instance=ExtResource( 8 )]
-rotate_sped = 250
-radius = 25
+rotate_sped = 20
+radius = 40
 shoot_wait_time = 0.35
 spawn_point_count = 6
 projectile_speed = 50
